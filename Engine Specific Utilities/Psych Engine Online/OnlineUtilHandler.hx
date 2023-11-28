@@ -20,7 +20,7 @@ createGlobalCallback('getDefaultPlayerStats', function():Array<Dynamic>
 	return [0, 0, 0, 0, 0, 0, '', false, false, false, 0];
 });
 
-createGlobalCallback('getOnlineUtilHandlerVersion', function():String
+createGlobalCallback('getPEOnlineUtilityVersion', function():String
 {
 	return '1.0.0';
 });

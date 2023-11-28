@@ -25,13 +25,13 @@ end
 
 ---Returns the current version of the module
 ---@return string
-function onlineUtil.getModuleVersion()
+function onlineUtil.getPEOnlineUtilityVersion()
 	return '1.0.0'
 end
 
 ---Returns a player's current stat
 ---
----If `player` isn't 1 or 2 or if the `stat` does not exist it'll returns `nil`
+---If `player` isn't one or two or if the `stat` does not exist, then it'll return `nil`
 ---@param player any
 ---@param stat string
 ---@return any
@@ -45,7 +45,7 @@ end
 
 ---Returns a player's current stats
 ---
----If `player` isn't 1 or 2, it returns the following table:
+---If `player` isn't one or two, it returns the following table:
 ---
 ---`{nil, nil, nil, nil, nil, nil, nil, nil, nil, nil}`
 ---@param player any
@@ -66,7 +66,7 @@ function onlineUtil.getPlayerStatsTable(player)
 	return statTable
 end
 
----Returns the Psych Engine Online version of the build being played.
+---Returns the current Psych Engine Online version.
 ---@return string
 function onlineUtil.getPsychEngineOnlineVersion()
 	return getPropertyFromClass('states.MainMenuState', 'psychOnlineVersion')
@@ -90,9 +90,9 @@ function onlineUtil.isClientOwner()
 	return getPropertyFromClass('online.GameClient', 'isOwner')
 end
 
----If online, returns `true` if the client is the opponent; else false
+---Returns `true` if the client is the opponent; else false
 ---
----If offline, returns `opponentMode` from `states.PlayState`
+---When offline, it'll return `opponentMode` from the class `states.PlayState`
 ---@return boolean
 function onlineUtil.isOpponent()
 	if getPropertyFromClass('online.GameClient', 'room') ~= nil then
