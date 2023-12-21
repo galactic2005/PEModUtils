@@ -1,5 +1,20 @@
 local onlineUtil = {}
 
+---Table of default player stats in order
+onlineUtil.tableDefaultPlayerStats = {
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
+	'',
+	false,
+	false,
+	false,
+	0
+}
+
 ---Table of player stats in order as defined in `online/scheme/Player.hx`
 onlineUtil.tablePlayerStatStrings = {
 	'score',
@@ -15,19 +30,8 @@ onlineUtil.tablePlayerStatStrings = {
 	'ping'
 }
 
----Returns `{0, 0, 0, 0, 0, 0, '', false, false, false, 0}`
----
----These are the default stats of a player as defined in `online/scheme/Player.hx`
----@return table
-function onlineUtil.getDefaultPlayerStats()
-	return {0, 0, 0, 0, 0, 0, '', false, false, false, 0}
-end
-
----Returns the current version of the module
----@return string
-function onlineUtil.getPEOnlineUtilityVersion()
-	return '1.0.0'
-end
+---The version of onlineUtil
+onlineUtil.Version = '2.0.0'
 
 ---Returns a player's current stat
 ---
@@ -47,7 +51,9 @@ end
 ---
 ---If `player` isn't one or two, it returns the following table:
 ---
----`{nil, nil, nil, nil, nil, nil, nil, nil, nil, nil}`
+---```lua
+---{nil, nil, nil, nil, nil, nil, nil, nil, nil, nil}
+---```
 ---@param player any
 ---@return table
 function onlineUtil.getPlayerStatsTable(player)
@@ -69,7 +75,13 @@ end
 ---Returns the current Psych Engine Online version.
 ---@return string
 function onlineUtil.getPsychEngineOnlineVersion()
-	return getPropertyFromClass('states.MainMenuState', 'psychOnlineVersion')
+	local classForMainMenuState = 'states.MainMenuState'
+	if version < '0.7.0' then
+		-- 0.6.3 or lower
+		classForMainMenuState = 'MainMenuState'
+	end
+
+	return getPropertyFromClass(classForMainMenuState, 'psychOnlineVersion')
 end
 
 ---Returns `true` if Anarchy Mode is enabled; else false
@@ -102,11 +114,12 @@ function onlineUtil.isOpponent()
 		return getPropertyFromClass('online.GameClient', 'isOwner')
 	end
 
+	local classForPlayState = 'states.PlayState'
 	if version < '0.7.0' then
 		-- 0.6.3 or lower
-		return getPropertyFromClass('PlayState', 'opponentMode')
+		classForPlayState = 'PlayState'
 	end
-	return getPropertyFromClass('states.PlayState', 'opponentMode')
+	return getPropertyFromClass(classForPlayState, 'opponentMode')
 end
 
 ---Returns `true` if the game is private; else false
@@ -119,6 +132,32 @@ end
 ---@return boolean
 function onlineUtil.isSwapSides()
 	return getPropertyFromClass('online.GameClient', 'room.state.swagSides')
+end
+
+---Toggles `opponentMode`, does not work online
+function onlineUtil.toggleOpponentMode()
+	if getPropertyFromClass('online.GameClient', 'room') ~= nil then
+		return
+	end
+
+	local classForPlayState = 'states.PlayState'
+	if version < '0.7.0' then
+		-- 0.6.3 or lower
+		classForPlayState = 'PlayState'
+	end
+
+	local currentOpponentMode = getPropertyFromClass(classForPlayState, 'opponentMode')
+	setPropertyFromClass(classForPlayState, 'opponentMode', not currentOpponentMode)
+
+	-- switch sides
+	setProperty('boyfriend.isPlayer', not getProperty('boyfriend.isPlayer'))
+	setProperty('dad.isPlayer', not getProperty('dad.isPlayer'))
+
+	if getProperty('boyfriend.isPlayer') then
+		addHealth(2)
+	else
+		addHealth(-2)
+	end
 end
 
 return onlineUtil
