@@ -1,6 +1,6 @@
 # PEModUtils
 
-A repository containing various premade assets available to use.
+A repository containing various premade assets available to use for [Psych Engine](https://github.com/ShadowMario/FNF-PsychEngine) or any engines built off it.
 
 * Engine Specific Utilities - Anything specific to one engine or another.
 * Lua Stage Recreations - Stage Recreations made in Lua.
