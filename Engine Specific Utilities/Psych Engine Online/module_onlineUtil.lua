@@ -101,6 +101,11 @@ function onlineUtil.isOpponent()
 		end
 		return getPropertyFromClass('online.GameClient', 'isOwner')
 	end
+
+	if version < '0.7.0' then
+		-- 0.6.3 or lower
+		return getPropertyFromClass('PlayState', 'opponentMode')
+	end
 	return getPropertyFromClass('states.PlayState', 'opponentMode')
 end
 
