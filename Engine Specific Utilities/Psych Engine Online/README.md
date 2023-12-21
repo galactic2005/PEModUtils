@@ -1,18 +1,41 @@
-# Functions
-
-## getDefaultPlayerStats()
-
-Returns the following table:
+# Variables
 
 ```lua
-{0, 0, 0, 0, 0, 0, '', false, false, false, 0}
+---Table of default player stats in order
+onlineUtil.tableDefaultPlayerStats = {
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
+	'',
+	false,
+	false,
+	false,
+	0
+}
+
+---Table of player stats in order as defined in `online/scheme/Player.hx`
+onlineUtil.tablePlayerStatStrings = {
+	'score',
+	'misses',
+	'sicks',
+	'goods',
+	'bads',
+	'shits',
+	'name',
+	'hasSong',
+	'hasLoaded',
+	'hasEnded',
+	'ping'
+}
+
+---The version of onlineUtil
+onlineUtil.Version = '2.0.0'
 ```
 
-These are the default stats of a player as defined in `online/scheme/Player.hx`.
-
-## getPEOnlineUtilityVersion()
-
-Returns the current version of the utility (currently `1.0.0`).
+# Functions
 
 ## getPlayerStat(player:Dynamic, stat:String)
 
@@ -73,3 +96,7 @@ Returns `true` if the game is private; else false.
 ## isSwapSides()
 
 Returns `true` if Swap Sides is enabled; else false.
+
+## toggleOpponentMode()
+
+Toggles `opponentMode`; does not work online.
