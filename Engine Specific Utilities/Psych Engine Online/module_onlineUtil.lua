@@ -134,7 +134,7 @@ function onlineUtil.isSwapSides()
 	return getPropertyFromClass('online.GameClient', 'room.state.swagSides')
 end
 
----Toggles `opponentMode`, does not work online
+---Toggles `opponentMode`; does not work online
 function onlineUtil.toggleOpponentMode()
 	if getPropertyFromClass('online.GameClient', 'room') ~= nil then
 		return
