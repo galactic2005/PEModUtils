@@ -1,7 +1,7 @@
 --[[
 	MIT License
 
-	Copyright (c) 2023 galatic_2005
+	Copyright (c) 2023-2024 galatic_2005
 
 	Permission is hereby granted, free of charge, to any person obtaining a copy
 	of this software and associated documentation files (the "Software"), to deal
@@ -87,11 +87,6 @@ function lightningStrikeShit()
 	end
 end
 
----
---- @param tag string
---- @param loops integer
---- @param loopsLeft integer
----
 function onTimerCompleted(tag, loops, loopsLeft)
 	if tag == 'halloweenWhiteSecondTween' then
 		doTweenAlpha('halloweenWhiteTween', 'halloweenWhite', 0, 0.25, 'linear')

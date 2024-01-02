@@ -1,43 +1,48 @@
-# Variables
+# onlineitil
+
+## Usage
+
+onlineutil is a module used for [Psych Engine Online](https://github.com/Snirozu/Funkin-Psych-Online/) by Snirozu.
+
+## Variables
 
 ```lua
----Table of default player stats in order
-onlineUtil.tableDefaultPlayerStats = {
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	'',
-	false,
-	false,
-	false,
-	0
+_VERSION = '2.0.0'
+
+--- Table of default player stats in order
+tableDefaultPlayerStats = {
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    '',
+    false,
+    false,
+    false,
+    0
 }
 
----Table of player stats in order as defined in `online/scheme/Player.hx`
-onlineUtil.tablePlayerStatStrings = {
-	'score',
-	'misses',
-	'sicks',
-	'goods',
-	'bads',
-	'shits',
-	'name',
-	'hasSong',
-	'hasLoaded',
-	'hasEnded',
-	'ping'
+--- Table of player stats in order as defined in `online/scheme/Player.hx`
+tablePlayerStatStrings = {
+    'score',
+    'misses',
+    'sicks',
+    'goods',
+    'bads',
+    'shits',
+    'name',
+    'hasSong',
+    'hasLoaded',
+    'hasEnded',
+    'ping'
 }
-
----The version of onlineUtil
-onlineUtil.Version = '2.0.0'
 ```
 
-# Functions
+## Functions
 
-## getPlayerStat(player:Dynamic, stat:String)
+### getPlayerStat(player:Dynamic, stat:String)
 
 Returns a player's current stat. If `player` isn't one or two or if the `stat` does not exist, then it'll return `nil`.
 
@@ -57,7 +62,7 @@ The following stats can be retrieved:
 * `hasEnded` - Checks if the player has ended the song or not.
 * `ping` - The current ping the player has in miliseconds.
 
-## getPlayerStatsTable(player:Dynamic)
+### getPlayerStatsTable(player:Dynamic)
 
 Returns a player's current stats as a table. If `player` isn't one or two, then it'll return the following table:
 
@@ -67,36 +72,36 @@ Returns a player's current stats as a table. If `player` isn't one or two, then 
 
 If `player` is not a string, it'll be converted to one. This allows you to input numbers to check for specific players.
 
-## getPsychEngineOnlineVersion()
+### getPsychEngineOnlineVersion()
 
 Returns the current Psych Engine Online version.
 
-## isAnarchyMode()
+### isAnarchyMode()
 
 Returns `true` if Anarchy Mode is enabled; else false.
 
-## isClientOnline()
+### isClientOnline()
 
 Returns `true` if the client is online; else false.
 
-## isClientOwner()
+### isClientOwner()
 
 Returns `true` if the client is the owner; else false.
 
-## isOpponent()
+### isOpponent()
 
 Returns `true` if the client is the opponent; else false.
 
 When offline, it'll return `opponentMode` from the class `states.PlayState`.
 
-## isPrivateRoom()
+### isPrivateRoom()
 
 Returns `true` if the game is private; else false.
 
-## isSwapSides()
+### isSwapSides()
 
 Returns `true` if Swap Sides is enabled; else false.
 
-## toggleOpponentMode()
+### toggleOpponentMode()
 
 Toggles `opponentMode`; does not work online.

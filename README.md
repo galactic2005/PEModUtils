@@ -10,6 +10,7 @@ If you have issues working with something in this repository, open an issue!
 
 ## Licensing and Usage
 
-All files in this repository are licensed under the MIT license. The only requirement to use these files is that you leave a copy of the license with its material unaltered. You may modify the files in any other way you feel like!
+This utility is free software; you can redistribute it and/or modify it under
+the terms of the MIT license. See [LICENSE](LICENSE) for details.
 
-It also means credit is optional, but it's appreciated if you decide to!
+Credit is optional, but I highly appreciate it!

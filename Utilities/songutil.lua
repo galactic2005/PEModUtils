@@ -1,9 +1,11 @@
-local songUtil = {}
+local songutil = {}
+
+songutil._VERSION = '1.1.0'
 
 --[[
 	MIT License
 
-	Copyright (c) 2023 galatic_2005
+	Copyright (c) 2023-2024 galatic_2005
 
 	Permission is hereby granted, free of charge, to any person obtaining a copy
 	of this software and associated documentation files (the "Software"), to deal
@@ -25,28 +27,22 @@ local songUtil = {}
 ]]
 
 ---The file where dkjson is located
-songUtil.dkJsonFilePath = 'mods/scripts/dkjson'
-
----The version of songUtil
-songUtil.Version = '1.0.0'
+songutil.dkJsonFilePath = 'mods/scripts/dkjson'
 
 ---Loads a song from a different mod folder
 ---
----`weekJsonPath` starts from `mods/`, and `songTitle` and `difficultyName` must be exact.
+---`weekJsonPath` starts from `mods/`; to get the current mod directory use the following:
+---
+---```lua
+---currentModDirectory .. 'weeks/weekFile'
+---```
 ---@param weekJsonPath string
 ---@param songTitle string
 ---@param difficultyName string
-function songUtil.loadSongFromAnotherMod(weekJsonPath, songTitle, difficultyName)
-	if type(weekJsonPath) ~= 'string' then
-		debugPrint('Expected string for weekJsonPath, got ' .. type(weekJsonPath) .. '.')
-		return -- use only strings for weekJsonPath
-	elseif type(songTitle) ~= 'string' then
-		debugPrint('Expected string for songTitle, got ' .. type(songTitle) .. '.')
-		return -- use only strings for songTitle
-	elseif type(difficultyName) ~= 'string' then
-		debugPrint('Expected string for difficultyName, got ' .. type(difficultyName) .. '.')
-		return -- use only strings for difficultyName
-	end
+function songutil.loadSongFromAnotherMod(weekJsonPath, songTitle, difficultyName)
+	assert(type(weekJsonPath) == 'string', 'Expected string for weekJsonPath, got ' .. type(weekJsonPath) .. '.') -- use only strings for weekJsonPath
+	assert(type(songTitle) == 'string', 'Expected string for songTitle, got ' .. type(songTitle) .. '.') -- use only strings for songTitle
+	assert(type(difficultyName) == 'string', 'Expected string for difficultyName, got ' .. type(difficultyName) .. '.') -- use only strings for difficultyName
 
 	if stringStartsWith(weekJsonPath, 'mods/') then
 		-- user put mods/ in the filename
@@ -59,12 +55,9 @@ function songUtil.loadSongFromAnotherMod(weekJsonPath, songTitle, difficultyName
 		modJsonPathString = modJsonPathString .. '.json'
 		weekJsonPath = weekJsonPath .. '.json'
 	end
+	assert(checkFileExists(modJsonPathString, true), 'File at ' .. modJsonPathString .. ' does not exist.') -- file does not exist
 
-	if not checkFileExists(modJsonPathString, true) then
-		debugPrint('\'' .. modJsonPathString .. '\' does not exist.')
-		return -- file does not exist
-	end
-	local dkjson = require(songUtil.dkJsonFilePath)
+	local dkjson = require(songutil.dkJsonFilePath)
 	local jsonContent = getTextFromFile(weekJsonPath, false)
 
 	-- decode the json
@@ -84,7 +77,7 @@ function songUtil.loadSongFromAnotherMod(weekJsonPath, songTitle, difficultyName
 		if returnLineOfContent[1] == nil then
 			returnLineOfContent[1] = #difficultyList + 1
 		end
-		table.insert(difficultiesAsTable, stringTrim(difficultyList:sub(startOfTableElement, tonumber(returnLineOfContent[1]) - 1)))
+		difficultiesAsTable[#difficultiesAsTable+1] = stringTrim(difficultyList:sub(startOfTableElement, tonumber(returnLineOfContent[1]) - 1))
 		startOfTableElement = tonumber(returnLineOfContent[1]) + 1
 	end
 
@@ -100,12 +93,7 @@ function songUtil.loadSongFromAnotherMod(weekJsonPath, songTitle, difficultyName
 			difficultyToLoad = i - 1
 		end
 	end
-
-	if difficultyToLoad == nil then
-		debugPrint('\'' .. difficultyName .. '\' difficulty does not exist. Refer to the following table.')
-		debugPrint(difficultiesAsTable)
-		return -- difficulty does not exist
-	end
+	assert(difficultyToLoad ~= nil, '\'' .. difficultyName .. '\' difficulty does not exist. Refer to the following table.\n' .. difficultiesAsTable)
 
 	-- compatability with different versions of Psych Engine
 	local classForCurrentModDirectory = 'backend.Mods'
@@ -139,4 +127,4 @@ function songUtil.loadSongFromAnotherMod(weekJsonPath, songTitle, difficultyName
 	loadSong(songTitle, difficultyToLoad)
 end
 
-return songUtil
+return songutil
