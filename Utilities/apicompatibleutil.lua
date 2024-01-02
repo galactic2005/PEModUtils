@@ -426,8 +426,6 @@ function apicompatibleutil.returnCompatibleVariableName(className, variableName)
 				{'in', {'globalantialiasing', 'antialiasing'}, function()
 					variableNameToReturn = returnBasedOnVersion('globalAntialiasing', 'antialiasing')
 				end},
-
-				-- default
 				{'default', '', function()
 					if apicompatibleutil.returnCompatibleNameDebugMessage then
 						debugPrint('Could not find ' .. variableName .. ' variable for ' .. version .. ' in ' className '. Returned variableName.')
@@ -449,8 +447,6 @@ function apicompatibleutil.returnCompatibleVariableName(className, variableName)
 				{'eq', 'noteSplashData.antialiasing', function()
 					variableNameToReturn = returnBasedOnVersion('antialiasing', 'noteSplashData.antialiasing')
 				end},
-
-				-- default
 				{'default', '', function()
 					if apicompatibleutil.returnCompatibleNameDebugMessage then
 						debugPrint('Could not find ' .. variableName .. ' variable for ' .. version .. ' in ' className '. Returned variableName.')
@@ -466,11 +462,15 @@ function apicompatibleutil.returnCompatibleVariableName(className, variableName)
 				{'in', {'camFollowPos', 'camGame.scroll'}, function()
 					variableNameToReturn = returnBasedOnVersion('camFollowPos', 'camGame.scroll')
 				end},
+				{'in', {'healthbarbg', 'healthbar.bg'}, function()
+					variableNameToReturn = returnBasedOnVersion('healthBarBG', 'healthBar.bg')
+				end},
 				{'eq', 'prevCamFollowPos', function()
 					variableNameToReturn = returnBasedOnVersion('prevCamFollowPos', 'camGame.scroll')
 				end},
-
-				-- default
+				{'in', {'timebarbg', 'timebar.bg'}, function()
+					variableNameToReturn = returnBasedOnVersion('timeBarBG', 'timeBar.bg')
+				end},
 				{'default', '', function()
 					if apicompatibleutil.returnCompatibleNameDebugMessage then
 						debugPrint('Could not find ' .. variableName .. ' variable for ' .. version .. ' in ' className '. Returned variableName.')
@@ -489,8 +489,6 @@ function apicompatibleutil.returnCompatibleVariableName(className, variableName)
 				{'in', {'updateCamera', 'moveCamera'}, function()
 					variableNameToReturn = returnBasedOnVersion('updateCamera', 'moveCamera')
 				end},
-
-				-- default
 				{'default', '', function()
 					if apicompatibleutil.returnCompatibleNameDebugMessage then
 						debugPrint('Could not find ' .. variableName .. ' variable for ' .. version .. ' in ' className '. Returned variableName.')
