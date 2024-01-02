@@ -52,7 +52,7 @@ end
 
 local apicompatibleutil = {}
 
-apicompatibleutil._VERSION = '1.0.1'
+apicompatibleutil._VERSION = '1.0.2'
 
 --[[
 	MIT License
@@ -422,9 +422,22 @@ function apicompatibleutil.returnCompatibleVariableName(className, variableName)
 		-- backend package
 		{'in', {'clientprefs', 'backend.clientprefs'}, function()
 			switch(stringTrim(variableName:lower()), {
-				-- clientprefs
+				-- clientprefs class
 				{'in', {'globalantialiasing', 'antialiasing'}, function()
 					variableNameToReturn = returnBasedOnVersion('globalAntialiasing', 'antialiasing')
+				end},
+				{'default', '', function()
+					if apicompatibleutil.returnCompatibleNameDebugMessage then
+						debugPrint('Could not find ' .. variableName .. ' variable for ' .. version .. ' in ' className '. Returned variableName.')
+					end
+				end}
+			})
+		end},
+		{'in', {'conductor', 'backend.conductor'}, function()
+			switch(stringTrim(variableName:lower()), {
+				-- conductor class
+				{'eq', 'lastSongPos', function()
+					variableNameToReturn = returnBasedOnVersion('lastSongPos', 'songPosition')
 				end},
 				{'default', '', function()
 					if apicompatibleutil.returnCompatibleNameDebugMessage then
@@ -437,7 +450,7 @@ function apicompatibleutil.returnCompatibleVariableName(className, variableName)
 		-- objects package
 		{'in', {'note', 'objects.note'}, function()
 			switch(stringTrim(variableName:lower()), {
-				-- note
+				-- note class
 				{'in', {'notesplashdisabled', 'notesplashdata.disabled'}, function()
 					variableNameToReturn = returnBasedOnVersion('noteSplashDisabled', 'noteSplashData.disabled')
 				end},
@@ -458,15 +471,27 @@ function apicompatibleutil.returnCompatibleVariableName(className, variableName)
 		-- states package
 		{'in', {'playstate', 'states.playstate'}, function()
 			switch(stringTrim(variableName:lower()), {
-				-- playstate
+				-- playstate class
+				{'eq', 'bads', function()
+					variableNameToReturn = returnBasedOnVersion('bads', 'ratingsData[2].hits')
+				end},
 				{'in', {'camFollowPos', 'camGame.scroll'}, function()
 					variableNameToReturn = returnBasedOnVersion('camFollowPos', 'camGame.scroll')
+				end},
+				{'eq', 'goods', function()
+					variableNameToReturn = returnBasedOnVersion('goods', 'ratingsData[1].hits')
 				end},
 				{'in', {'healthbarbg', 'healthbar.bg'}, function()
 					variableNameToReturn = returnBasedOnVersion('healthBarBG', 'healthBar.bg')
 				end},
 				{'eq', 'prevCamFollowPos', function()
 					variableNameToReturn = returnBasedOnVersion('prevCamFollowPos', 'camGame.scroll')
+				end},
+				{'eq', 'sicks', function()
+					variableNameToReturn = returnBasedOnVersion('sicks', 'ratingsData[0].hits')
+				end},
+				{'eq', 'shits', function()
+					variableNameToReturn = returnBasedOnVersion('shits', 'ratingsData[3].hits')
 				end},
 				{'in', {'timebarbg', 'timebar.bg'}, function()
 					variableNameToReturn = returnBasedOnVersion('timeBarBG', 'timeBar.bg')
@@ -482,7 +507,7 @@ function apicompatibleutil.returnCompatibleVariableName(className, variableName)
 		-- substates package
 		{'in', {'gameoversubstate', 'substates.gameoversubstate'}, function()
 			switch(stringTrim(variableName:lower()), {
-				-- gameoversubstate
+				-- gameoversubstate class
 				{'in', {'camFollowPos', 'camGame.scroll'}, function()
 					variableNameToReturn = returnBasedOnVersion('camFollowPos', 'camGame.scroll')
 				end},
