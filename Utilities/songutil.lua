@@ -26,16 +26,16 @@ songutil._VERSION = '1.1.0'
 	SOFTWARE.
 ]]
 
----The file where dkjson is located
+--- The file where dkjson is located
 songutil.dkJsonFilePath = 'mods/scripts/dkjson'
 
----Loads a song from a different mod folder
+--- Loads a song from a different mod folder
 ---
----`weekJsonPath` starts from `mods/`; to get the current mod directory use the following:
+--- `weekJsonPath` starts from `mods/`; to get the current mod directory use the following:
 ---
----```lua
----currentModDirectory .. 'weeks/weekFile'
----```
+--- ```lua
+--- currentModDirectory .. 'weeks/weekFile'
+--- ```
 ---@param weekJsonPath string
 ---@param songTitle string
 ---@param difficultyName string

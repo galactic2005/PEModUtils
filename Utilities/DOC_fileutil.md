@@ -2,20 +2,20 @@
 
 ## Usage
 
-fileutil is a module used to create list files or to read one line from a file.
+fileutil is a module used to write or read from files in specific ways.
 
 ## Variables
 
 ```lua
 _VERSION = '3.0.0'
 
----The most recent file used regardless of context
+--- The most recent file used regardless of context
 mostRecentFileUsed = ''
 
----The most recent file read from
+--- The most recent file read from
 mostRecentFileReadFrom = ''
 
----The most recent file written to
+--- The most recent file written to
 mostRecentFileWrittenTo = ''
 ```
 

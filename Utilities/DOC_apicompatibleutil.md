@@ -2,9 +2,11 @@
 
 ## Usage
 
-apicompatibleutil is a module used to make compatability easier between different versions of PE.
+apicompatibleutil is a module used to make compatibility easier between different versions of PE.
 
-Note that this module does not provide nor promise 100% compatability, especially with complex scripts or of scripts that rely on newer content not present in older versions.
+This module can be used not only for compatibility for older versions of PE, but also newer versions when they release by updating this module.
+
+Note that this module does not promise nor provides 100% compatibility, especially with complex scripts or of scripts that rely on newer content not present in older versions.
 
 ## Variables
 

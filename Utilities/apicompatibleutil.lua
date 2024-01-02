@@ -52,7 +52,7 @@ end
 
 local apicompatibleutil = {}
 
-apicompatibleutil._VERSION = '1.0.0'
+apicompatibleutil._VERSION = '1.0.1'
 
 --[[
 	MIT License
@@ -429,7 +429,7 @@ function apicompatibleutil.returnCompatibleVariableName(className, variableName)
 
 				-- default
 				{'default', '', function()
-					if apicompatibleutil.returnClassNameDebugMessage then
+					if apicompatibleutil.returnCompatibleNameDebugMessage then
 						debugPrint('Could not find ' .. variableName .. ' variable for ' .. version .. ' in ' className '. Returned variableName.')
 					end
 				end}
@@ -452,7 +452,7 @@ function apicompatibleutil.returnCompatibleVariableName(className, variableName)
 
 				-- default
 				{'default', '', function()
-					if apicompatibleutil.returnClassNameDebugMessage then
+					if apicompatibleutil.returnCompatibleNameDebugMessage then
 						debugPrint('Could not find ' .. variableName .. ' variable for ' .. version .. ' in ' className '. Returned variableName.')
 					end
 				end}
@@ -472,7 +472,7 @@ function apicompatibleutil.returnCompatibleVariableName(className, variableName)
 
 				-- default
 				{'default', '', function()
-					if apicompatibleutil.returnClassNameDebugMessage then
+					if apicompatibleutil.returnCompatibleNameDebugMessage then
 						debugPrint('Could not find ' .. variableName .. ' variable for ' .. version .. ' in ' className '. Returned variableName.')
 					end
 				end}
@@ -492,7 +492,7 @@ function apicompatibleutil.returnCompatibleVariableName(className, variableName)
 
 				-- default
 				{'default', '', function()
-					if apicompatibleutil.returnClassNameDebugMessage then
+					if apicompatibleutil.returnCompatibleNameDebugMessage then
 						debugPrint('Could not find ' .. variableName .. ' variable for ' .. version .. ' in ' className '. Returned variableName.')
 					end
 				end}
@@ -501,7 +501,7 @@ function apicompatibleutil.returnCompatibleVariableName(className, variableName)
 
 		-- default
 		{'default', '', function()
-			if apicompatibleutil.returnClassNameDebugMessage then
+			if apicompatibleutil.returnCompatibleNameDebugMessage then
 				debugPrint('Could not find ' .. className .. ' class for ' .. version .. '. Returned variableName.')
 			end
 		end}
@@ -532,7 +532,7 @@ function apicompatibleutil.getPropertyFromClass(classVar, variable, allowMaps)
 	end
 	local classToUse = apicompatibleutil.returnCompatibleClassName(classVar)
 
-	getPropertyFromClass(classToUse, variable, allowMaps)
+	return getPropertyFromClass(classToUse, variable, allowMaps)
 end
 
 --- A version of `getPropertyFromClass` that automatically converts variables using the other functions listed
@@ -542,7 +542,6 @@ end
 --- @param variable string
 --- @param value dynamic
 --- @param allowMaps? boolean
---- @return any property
 function apicompatibleutil.setPropertyFromClass(classVar, variable, value, allowMaps)
 	assert(type(classVar) == 'string', 'Expected string for classVar, got ' .. type(classVar) .. '.') -- use only strings for classVar
 	assert(type(variable) == 'string', 'Expected string for variable, got ' .. type(variable) .. '.') -- use only strings for variable
@@ -550,8 +549,9 @@ function apicompatibleutil.setPropertyFromClass(classVar, variable, value, allow
 		allowMaps = false
 	end
 	local classToUse = apicompatibleutil.returnCompatibleClassName(classVar)
+	local variableToUse = apicompatibleutil.returnCompatibleVariableName(classToUse, variable)
 
-	setPropertyFromClass(classToUse, variable, value, allowMaps)
+	setPropertyFromClass(classToUse, variableToUse, value, allowMaps)
 end
 
 return apicompatibleutil

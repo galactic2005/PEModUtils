@@ -15,7 +15,7 @@ Remember to set `songUtil.dkJsonFilePath` to the appropiate file path (without t
 ```lua
 _VERSION = '1.0.0'
 
----The file where dkjson is located
+--- The file where dkjson is located
 dkJsonFilePath = 'mods/scripts/dkjson'
 ```
 

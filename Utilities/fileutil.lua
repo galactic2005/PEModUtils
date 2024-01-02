@@ -1,6 +1,6 @@
 local fileutil = {}
 
-fileutil._VERSION = '3.0.0'
+fileutil._VERSION = '3.0.1'
 
 --[[
 	MIT License
@@ -26,34 +26,81 @@ fileutil._VERSION = '3.0.0'
 	SOFTWARE.
 ]]
 
----The most recent file used regardless of context
+--- The most recent file used regardless of context
 fileutil.mostRecentFileUsed = ''
 
----The most recent file read from
+--- The most recent file read from
 fileutil.mostRecentFileReadFrom = ''
 
----The most recent file written to
+--- The most recent file written to
 fileutil.mostRecentFileWrittenTo = ''
 
----Returns the contents of a list file as a table
+--- Converts lua scripts to remove their depreciate counterparts
 ---
----Refer to `characterList.txt`, `stageList.txt`, or `weekList.txt` for formatting of list files
----@param path string
----@param startFromCurrentModDirectory boolean
----@return table
+--- As this currently only renames functions, remember to manually touch-up your script.
+--- @param path string
+--- @param startFromCurrentModDirectory boolean
+function fileutil.removeDepreciatesFromScript(path, startFromCurrentModDirectory)
+	assert(type(path) == 'string', 'Expected string for path, got ' .. type(path) .. '.') -- use only strings for path
+	assert(type(startFromCurrentModDirectory) == 'boolean', 'Expected boolean for startFromCurrentModDirectory, got ' .. type(startFromCurrentModDirectory) .. '.') -- use only booleans for startFromCurrentModDirectory
+
+	if startFromCurrentModDirectory then
+		path = currentModDirectory .. '/' .. path
+	end
+
+	if not stringEndsWith(path, '.lua') then
+		-- user forgot to put .lua in the filename
+		path = path .. '.lua'
+	end
+	assert(checkFileExists(path, false), 'File at ' .. path .. ' does not exist.') -- file does not exist
+	fileutil.mostRecentFileReadFrom = path
+	fileutil.mostRecentFileUsed = path
+	fileutil.mostRecentFileWrittenTo = path
+
+	-- get text from file
+	local file = getTextFromFile(path, false)
+
+	-- lots of gsub
+	local result = nil
+	result = file:gsub('luaSpriteMakeGraphic', 'makeGraphic')
+	result = result:gsub('luaSpriteAddAnimationByPrefix', 'addAnimationByPrefix')
+	result = result:gsub('luaSpriteAddAnimationByIndices', 'addAnimationByIndices')
+	result = result:gsub('addAnimationByIndicesLoop', 'addAnimationByIndices')
+	result = result:gsub('luaSpritePlayAnimation', 'playAnim')
+	result = result:gsub('objectPlayAnimation', 'playAnim')
+	result = result:gsub('characterPlayAnim', 'playAnim')
+	result = result:gsub('setLuaSpriteCamera', 'setObjectCamera')
+	result = result:gsub('setLuaSpriteScrollFactor', 'setScrollFactor')
+	result = result:gsub('scaleLuaSprite', 'scaleObject')
+	result = result:gsub('setPropertyLuaSprite', 'setProperty')
+	result = result:gsub('getPropertyLuaSprite', 'getProperty')
+	result = result:gsub('musicFadeIn', 'soundFadeIn')
+	result = result:gsub('musicFadeOut', 'soundFadeOut')
+
+	-- save file
+	saveFile(path, result, false)
+end
+
+--- Returns the contents of a list file as a table
+---
+--- Refer to `characterList.txt`, `stageList.txt`, or `weekList.txt` for formatting of list files
+--- @param path string
+--- @param startFromCurrentModDirectory boolean
+--- @return table
 function fileutil.readListFile(path, startFromCurrentModDirectory)
 	assert(type(path) == 'string', 'Expected string for path, got ' .. type(path) .. '.') -- use only strings for path
 	assert(type(startFromCurrentModDirectory) == 'boolean', 'Expected boolean for startFromCurrentModDirectory, got ' .. type(startFromCurrentModDirectory) .. '.') -- use only booleans for startFromCurrentModDirectory
 
-	if not path:match('.txt', path:len() - 3) then
+	if not stringEndsWith(path, '.txt') then
 		-- user forgot to put .txt in the filename
 		path = path .. '.txt'
 	end
 	assert(checkFileExists(path, startFromCurrentModDirectory), 'File at ' .. path .. ' does not exist.') -- file does not exist
+	fileutil.mostRecentFileReadFrom = path
+	fileutil.mostRecentFileUsed = path
 
 	-- get text from file
-	local file = getTextFromFile(fileutil.mostRecentFileUsed, not startFromCurrentModDirectory)
-	fileutil.mostRecentFileReadFrom = fileutil.mostRecentFileUsed
+	local file = getTextFromFile(path, not startFromCurrentModDirectory)
 
 	local contentsOfFile = {}
 	local returnLineOfContent = {0, 0}
@@ -75,10 +122,10 @@ function fileutil.readListFile(path, startFromCurrentModDirectory)
 	return contentsOfFile
 end
 
----Writes a list file using a table
+--- Writes a list file using a table
 ---
----Any table elements in `tableToInsert` that are not a `number` or `string` will be skipped from being written.
----If the file at `path` is an existing file, it'll be overwritten.
+--- Any table elements in `tableToInsert` that are not a `number` or `string` will be skipped from being written.
+--- If the file at `path` is an existing file, it'll be overwritten.
 ---@param path string
 ---@param tableToInsert table
 ---@param startFromCurrentModDirectory boolean
@@ -92,6 +139,7 @@ function fileutil.writeListFile(path, tableToInsert, startFromCurrentModDirector
 	assert(#tableToInsert > 0, 'tableToInsert is empty.') --- tableToInsert is empty
 
 	if not stringEndsWith(path, '.txt') then
+		-- user forgot to put .txt in the filename
 		path = path .. '.txt'
 	end
 
@@ -99,8 +147,10 @@ function fileutil.writeListFile(path, tableToInsert, startFromCurrentModDirector
 
 	local fileContent = ''
 	if startFromCurrentModDirectory then
+		fileutil.mostRecentFileUsed = currentModDirectory .. '/' .. path
 		fileutil.mostRecentFileWrittenTo = currentModDirectory .. '/' .. path
 	else
+		fileutil.mostRecentFileUsed = path
 		fileutil.mostRecentFileWrittenTo = path
 	end
 
@@ -111,17 +161,17 @@ function fileutil.writeListFile(path, tableToInsert, startFromCurrentModDirector
 			fileContent = fileContent .. tostring(tableElement) .. '\n'
 		end
 	end
-	saveFile(fileutil.mostRecentFileWrittenTo, fileContent, not startFromCurrentModDirectory)
+	saveFile(path, fileContent, not startFromCurrentModDirectory)
 end
 
----Reads one line of content from a file as a string; or `nil` if no file is found or if the file doesn't contain content.
+--- Reads one line of content from a file as a string; or `nil` if no file is found or if the file doesn't contain content.
 ---
----If `linePosition` isn't specified, then this function will return a random line of content.
----@param path string
----@param startFromModDirectory boolean
----@param linePosition? integer
----@return string
----@return nil
+--- If `linePosition` isn't specified, then this function will return a random line of content.
+--- @param path string
+--- @param startFromModDirectory boolean
+--- @param linePosition? integer
+--- @return string
+--- @return nil
 function fileutil.readLineFromFile(path, startFromCurrentModDirectory, linePosition)
 	-- type asserts
 	assert(type(path) == 'string', 'Expected string for path, got ' .. type(path) .. '.') -- use only strings for path
