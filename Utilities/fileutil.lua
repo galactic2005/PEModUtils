@@ -58,7 +58,8 @@ function fileutil.getModsList(type)
 	assert(checkFileExists('modsList.txt', true), 'modsList.txt does not exist.') -- modsList.txt does not exist
 
 	local modsListFile = getTextFromFile('../modsList.txt', false)
-	assert(#modsListFile > 0, 'modsList.txt is empty.')
+	fileutil.mostRecentFileUsed = 'modsList.txt'
+	fileutil.mostRecentFileReadFrom = 'modsList.txt'
 
 	local addModToList = false
 	local listOfMods = {}
