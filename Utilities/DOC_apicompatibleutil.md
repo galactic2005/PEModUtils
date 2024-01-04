@@ -11,8 +11,6 @@ Note that this module does not promise nor provides 100% compatibility, especial
 ## Variables
 
 ```lua
-_VERSION = '1.0.0'
-
 --- Whether `returnCompatibleClassName` and `returnCompatibleVariableName` output a debug message if no class name was found
 returnClassNameDebugMessage = false
 ```

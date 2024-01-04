@@ -14,7 +14,7 @@ If you have issues working with something in this repository, open an issue!
 
 ### Utilities
 
-To use an utility, simply use `require()` to load the module and all its child functions and variables.
+To use an utility, simply use `require()` to load the module and all its child functions and variables. Make sure to place the .lua files in their correct place.
 
 ```lua
 local onlineutil = require(currentModDirectory .. '/onlineutil')
@@ -24,7 +24,13 @@ local fileutil = require(currentModDirectory .. '/fileutil')
 local modutil = require(currentModDirectory .. '/modutil')
 ```
 
-Make sure to place the .lua files in their correct place. Refer to the DOC_ files or the wiki for documentation of utilites.
+To confirm it works, you can use `debugPrint()` to print out the `_VERSION` variable of a module.
+
+```lua
+debugPrint(fileutil._VERSION) -- returns the current version of fileutil
+```
+
+Refer to the DOC_ files or the wiki for documentation of utilites.
 
 ### LUA Stage Recreations
 

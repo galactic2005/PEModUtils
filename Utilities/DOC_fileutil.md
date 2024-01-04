@@ -7,8 +7,6 @@
 ## Variables
 
 ```lua
-_VERSION = '3.0.0'
-
 --- The most recent file used regardless of context
 mostRecentFileUsed = ''
 

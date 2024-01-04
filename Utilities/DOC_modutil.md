@@ -13,8 +13,6 @@ Remember to set `modutil.dkJsonFilePath` to the appropiate file path (without th
 ## Variables
 
 ```lua
-_VERSION = '2.0.0'
-
 --- The file where dkjson is located
 dkJsonFilePath = 'mods/dkjson'
 ```

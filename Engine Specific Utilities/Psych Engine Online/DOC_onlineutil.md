@@ -7,8 +7,6 @@
 ## Variables
 
 ```lua
-_VERSION = '2.0.0'
-
 --- Table of default player stats in order
 tableDefaultPlayerStats = {
     0,
