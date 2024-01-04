@@ -169,9 +169,9 @@ function onlineutil.toggleOpponentMode()
 	setProperty('dad.isPlayer', not getProperty('dad.isPlayer'))
 
 	if getProperty('boyfriend.isPlayer') then
-		addHealth(2)
+		setHealth(2)
 	else
-		addHealth(-2)
+		setHealth(-2)
 	end
 end
 

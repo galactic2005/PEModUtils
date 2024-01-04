@@ -1,19 +1,19 @@
-# songutil
+# modutil
 
 ## Usage
 
-songutil is a module used for loading or manipulating songs.
+modutil is a module used for manipulating mods or reading data from other mods.
 
 ## Dependencies
 
 * [dkjson](http://dkolf.de/src/dkjson-lua.fsl/home)
 
-Remember to set `songUtil.dkJsonFilePath` to the appropiate file path (without the extension or spaces).
+Remember to set `modutil.dkJsonFilePath` to the appropiate file path (without the extension or spaces).
 
 ## Variables
 
 ```lua
-_VERSION = '1.0.0'
+_VERSION = '2.0.0'
 
 --- The file where dkjson is located
 dkJsonFilePath = 'mods/scripts/dkjson'

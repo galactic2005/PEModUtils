@@ -1,6 +1,6 @@
 local fileutil = {}
 
-fileutil._VERSION = '3.0.1'
+fileutil._VERSION = '3.0.2'
 
 --[[
 	MIT License
@@ -35,6 +35,63 @@ fileutil.mostRecentFileReadFrom = ''
 --- The most recent file written to
 fileutil.mostRecentFileWrittenTo = ''
 
+--- Gets the current mods list from modsList.txt.
+---
+--- `type` should be one of the following:
+---
+--- * `'all'` - Gets all mods regardless of activeness.
+--- * `'active'` - Gets all mods that are active.
+--- * `'inactive'` - Gets all mods that are inactive.
+---
+--- If `type` is not of one of these three strings, then it'll default to `'all'`.
+--- @param type string
+--- @return table
+function fileutil.getModsList(type)
+	type = type:lower()
+	if type == 'enabled' then
+		type = 'active'
+	elseif type == 'disabled' then
+		type = 'inactive'
+	elseif type ~= 'all' and type ~= 'active' and type ~= 'inactive' then
+		type = 'all'
+	end
+	assert(checkFileExists('modsList.txt', true), 'modsList.txt does not exist.') -- modsList.txt does not exist
+
+	local modsListFile = getTextFromFile('../modsList.txt', false)
+	assert(#modsListFile > 0, 'modsList.txt is empty.')
+
+	local addModToList = false
+	local listOfMods = {}
+	local modName = ''
+	local returnLineOfContent = {0, 0}
+	local startOfTableElement = 1
+
+	while startOfTableElement < #modsListFile do
+		-- return a line of content
+		returnLineOfContent = ({ modsListFile:find('\n', startOfTableElement) })
+		if not returnLineOfContent[1] then
+			returnLineOfContent[1] = #modsListFile + 1
+		end
+
+		modName = stringTrim(modsListFile:sub(startOfTableElement, tonumber(returnLineOfContent[1]) - 1))
+		if stringEndsWith(modName, '1') then
+			addModToList = type == 'all' or type == 'active'
+		else
+			addModToList = type == 'all' or type == 'inactive'
+		end
+
+		if addModToList then
+			-- insert into listOfMods
+			modName = modName:sub(1, #modName - 2)
+			listOfMods[#listOfMods+1] = modName
+		end
+		startOfTableElement = tonumber(returnLineOfContent[1]) + 1
+	end
+
+	-- return table
+	return listOfMods
+end
+
 --- Converts lua scripts to remove their depreciate counterparts
 ---
 --- As this currently only renames functions, remember to manually touch-up your script.
@@ -53,8 +110,8 @@ function fileutil.removeDepreciatesFromScript(path, startFromCurrentModDirectory
 		path = path .. '.lua'
 	end
 	assert(checkFileExists(path, false), 'File at ' .. path .. ' does not exist.') -- file does not exist
-	fileutil.mostRecentFileReadFrom = path
 	fileutil.mostRecentFileUsed = path
+	fileutil.mostRecentFileReadFrom = path
 	fileutil.mostRecentFileWrittenTo = path
 
 	-- get text from file
@@ -96,8 +153,8 @@ function fileutil.readListFile(path, startFromCurrentModDirectory)
 		path = path .. '.txt'
 	end
 	assert(checkFileExists(path, startFromCurrentModDirectory), 'File at ' .. path .. ' does not exist.') -- file does not exist
-	fileutil.mostRecentFileReadFrom = path
 	fileutil.mostRecentFileUsed = path
+	fileutil.mostRecentFileReadFrom = path
 
 	-- get text from file
 	local file = getTextFromFile(path, not startFromCurrentModDirectory)
@@ -134,7 +191,7 @@ function fileutil.writeListFile(path, tableToInsert, startFromCurrentModDirector
 	assert(type(path) == 'string', 'Expected string for path, got ' .. type(path) .. '.') -- use only strings for path
 	assert(type(tableToInsert) == 'table', 'Expected table for tableToInsert, got ' .. type(tableToInsert) .. '.')-- use only tables for tableToInsert
 	assert(type(startFromCurrentModDirectory) == 'boolean', 'Expected boolean for startFromCurrentModDirectory, got ' .. type(startFromCurrentModDirectory) .. '.') -- use only booleans for startFromCurrentModDirectory
-	
+
 	-- table length assert
 	assert(#tableToInsert > 0, 'tableToInsert is empty.') --- tableToInsert is empty
 
@@ -144,15 +201,13 @@ function fileutil.writeListFile(path, tableToInsert, startFromCurrentModDirector
 	end
 
 	assert(checkFileExists(path, startFromCurrentModDirectory), 'File at ' .. path .. ' does not exist.') -- file does not exist
+	if startFromCurrentModDirectory then
+		path = currentModDirectory .. '/' .. path
+	end
 
 	local fileContent = ''
-	if startFromCurrentModDirectory then
-		fileutil.mostRecentFileUsed = currentModDirectory .. '/' .. path
-		fileutil.mostRecentFileWrittenTo = currentModDirectory .. '/' .. path
-	else
-		fileutil.mostRecentFileUsed = path
-		fileutil.mostRecentFileWrittenTo = path
-	end
+	fileutil.mostRecentFileUsed = path
+	fileutil.mostRecentFileWrittenTo = path
 
 	local tableElement = nil
 	for i = 1, #tableToInsert do

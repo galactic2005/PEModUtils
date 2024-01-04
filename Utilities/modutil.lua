@@ -1,6 +1,6 @@
-local songutil = {}
+local modutil = {}
 
-songutil._VERSION = '1.1.0'
+modutil._VERSION = '1.1.0'
 
 --[[
 	MIT License
@@ -27,7 +27,7 @@ songutil._VERSION = '1.1.0'
 ]]
 
 --- The file where dkjson is located
-songutil.dkJsonFilePath = 'mods/scripts/dkjson'
+modutil.dkJsonFilePath = 'mods/scripts/dkjson'
 
 --- Loads a song from a different mod folder
 ---
@@ -36,10 +36,10 @@ songutil.dkJsonFilePath = 'mods/scripts/dkjson'
 --- ```lua
 --- currentModDirectory .. 'weeks/weekFile'
 --- ```
----@param weekJsonPath string
----@param songTitle string
----@param difficultyName string
-function songutil.loadSongFromAnotherMod(weekJsonPath, songTitle, difficultyName)
+--- @param weekJsonPath string
+--- @param songTitle string
+--- @param difficultyName string
+function modutil.loadSongFromAnotherMod(weekJsonPath, songTitle, difficultyName)
 	assert(type(weekJsonPath) == 'string', 'Expected string for weekJsonPath, got ' .. type(weekJsonPath) .. '.') -- use only strings for weekJsonPath
 	assert(type(songTitle) == 'string', 'Expected string for songTitle, got ' .. type(songTitle) .. '.') -- use only strings for songTitle
 	assert(type(difficultyName) == 'string', 'Expected string for difficultyName, got ' .. type(difficultyName) .. '.') -- use only strings for difficultyName
@@ -57,7 +57,7 @@ function songutil.loadSongFromAnotherMod(weekJsonPath, songTitle, difficultyName
 	end
 	assert(checkFileExists(modJsonPathString, true), 'File at ' .. modJsonPathString .. ' does not exist.') -- file does not exist
 
-	local dkjson = require(songutil.dkJsonFilePath)
+	local dkjson = require(modutil.dkJsonFilePath)
 	local jsonContent = getTextFromFile(weekJsonPath, false)
 
 	-- decode the json
@@ -127,4 +127,4 @@ function songutil.loadSongFromAnotherMod(weekJsonPath, songTitle, difficultyName
 	loadSong(songTitle, difficultyToLoad)
 end
 
-return songutil
+return modutil

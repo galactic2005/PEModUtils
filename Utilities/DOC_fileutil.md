@@ -21,6 +21,18 @@ mostRecentFileWrittenTo = ''
 
 ## Functions
 
+### getModsList(type:String)
+
+Gets the current mods list from modsList.txt.
+
+`type` should be one of the following:
+
+* `'all'` - Gets all mods regardless of activeness.
+* `'active'` - Gets all mods that are active.
+* `'inactive'` - Gets all mods that are inactive.
+
+If `type` is not of one of these three strings, then it'll default to `'all'`.
+
 ### readListFile(path:String, startFromCurrentModDirectory:Boolean)
 
 Returns the contents of a list file as a table.
