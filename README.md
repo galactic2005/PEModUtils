@@ -24,7 +24,7 @@ local fileutil = require(currentModDirectory .. '/fileutil')
 local modutil = require(currentModDirectory .. '/modutil')
 ```
 
-Make sure to place the .lua files in their correct place.
+Make sure to place the .lua files in their correct place. Refer to the DOC_ files or the wiki for documentation of utilites.
 
 ### LUA Stage Recreations
 

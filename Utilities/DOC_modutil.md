@@ -2,7 +2,7 @@
 
 ## Usage
 
-modutil is a module used for manipulating mods or reading data from other mods.
+*modutil* is a module used for manipulating mods or reading data from other mods.
 
 ## Dependencies
 

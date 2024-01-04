@@ -428,7 +428,7 @@ function apicompatibleutil.returnCompatibleVariableName(className, variableName)
 				end},
 				{'default', '', function()
 					if apicompatibleutil.returnCompatibleNameDebugMessage then
-						debugPrint('Could not find ' .. variableName .. ' variable for ' .. version .. ' in ' className '. Returned variableName.')
+						debugPrint('Could not find ' .. variableName .. ' variable for ' .. version .. ' in ' .. className .. '. Returned variableName.')
 					end
 				end}
 			})
@@ -441,7 +441,7 @@ function apicompatibleutil.returnCompatibleVariableName(className, variableName)
 				end},
 				{'default', '', function()
 					if apicompatibleutil.returnCompatibleNameDebugMessage then
-						debugPrint('Could not find ' .. variableName .. ' variable for ' .. version .. ' in ' className '. Returned variableName.')
+						debugPrint('Could not find ' .. variableName .. ' variable for ' .. version .. ' in ' .. className .. '. Returned variableName.')
 					end
 				end}
 			})
@@ -462,7 +462,7 @@ function apicompatibleutil.returnCompatibleVariableName(className, variableName)
 				end},
 				{'default', '', function()
 					if apicompatibleutil.returnCompatibleNameDebugMessage then
-						debugPrint('Could not find ' .. variableName .. ' variable for ' .. version .. ' in ' className '. Returned variableName.')
+						debugPrint('Could not find ' .. variableName .. ' variable for ' .. version .. ' in ' .. className .. '. Returned variableName.')
 					end
 				end}
 			})
@@ -498,7 +498,7 @@ function apicompatibleutil.returnCompatibleVariableName(className, variableName)
 				end},
 				{'default', '', function()
 					if apicompatibleutil.returnCompatibleNameDebugMessage then
-						debugPrint('Could not find ' .. variableName .. ' variable for ' .. version .. ' in ' className '. Returned variableName.')
+						debugPrint('Could not find ' .. variableName .. ' variable for ' .. version .. ' in ' .. className .. '. Returned variableName.')
 					end
 				end}
 			})
@@ -516,7 +516,7 @@ function apicompatibleutil.returnCompatibleVariableName(className, variableName)
 				end},
 				{'default', '', function()
 					if apicompatibleutil.returnCompatibleNameDebugMessage then
-						debugPrint('Could not find ' .. variableName .. ' variable for ' .. version .. ' in ' className '. Returned variableName.')
+						debugPrint('Could not find ' .. variableName .. ' variable for ' .. version .. ' in ' .. className .. '. Returned variableName.')
 					end
 				end}
 			})

@@ -2,7 +2,7 @@
 
 ## Usage
 
-fileutil is a module used to write or read from files in specific ways.
+*fileutil* is a module used to write or read from files in specific ways.
 
 ## Variables
 
