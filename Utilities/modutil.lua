@@ -1,6 +1,6 @@
 local modutil = {}
 
-modutil._VERSION = '1.1.0'
+modutil._VERSION = '2.0.0'
 
 --[[
 	MIT License
@@ -27,7 +27,7 @@ modutil._VERSION = '1.1.0'
 ]]
 
 --- The file where dkjson is located
-modutil.dkJsonFilePath = 'mods/scripts/dkjson'
+modutil.dkJsonFilePath = 'mods/dkjson'
 
 --- Loads a song from a different mod folder
 ---

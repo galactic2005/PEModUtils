@@ -35,7 +35,7 @@ fileutil.mostRecentFileReadFrom = ''
 --- The most recent file written to
 fileutil.mostRecentFileWrittenTo = ''
 
---- Gets the current mods list from modsList.txt.
+--- Gets the current mods list from `modsList.txt`
 ---
 --- `type` should be one of the following:
 ---
