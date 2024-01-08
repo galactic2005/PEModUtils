@@ -20,6 +20,7 @@ To use an utility, simply use `require()` to load the module and all its child f
 local onlineutil = require(currentModDirectory .. '/onlineutil')
 
 local apicompatibleutil = require(currentModDirectory .. '/apiocmpatibleutil')
+local datautil = require(currentModDirectory .. '/datautil')
 local fileutil = require(currentModDirectory .. '/fileutil')
 local modutil = require(currentModDirectory .. '/modutil')
 ```
