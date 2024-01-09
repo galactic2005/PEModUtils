@@ -16,6 +16,8 @@ If you have issues working with something in this repository, open an issue!
 
 To use an utility, simply use `require()` to load the module and all its child functions and variables. Make sure to place the .lua files in their correct place.
 
+repo auto pull test
+
 ```lua
 local onlineutil = require(currentModDirectory .. '/onlineutil')
 
