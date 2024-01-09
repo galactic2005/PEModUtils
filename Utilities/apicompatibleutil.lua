@@ -106,8 +106,6 @@ end
 function apicompatibleutil.returnCompatibleClassName(className)
     assert(type(className) == 'string', 'Expected string for className, got ' .. type(className) .. '.') -- use only strings for className
     local classNameToReturn = className
-
-    local returnBasedOnVersion = returnBasedOnVersion
     switch(stringTrim(className:lower()), {
         -- backend package
         {'in', {'achievements', 'backend.achievements'}, function()
@@ -418,9 +416,6 @@ function apicompatibleutil.returnCompatibleVariableName(className, variableName)
     assert(type(className) == 'string', 'Expected string for className, got ' .. type(className) .. '.') -- use only strings for className
     assert(type(variableName) == 'string', 'Expected string for variableName, got ' .. type(variableName) .. '.') -- use only strings for variableName
     local variableNameToReturn = variableName
-
-    local returnBasedOnVersion = returnBasedOnVersion
-    local switch = switch
     switch(stringTrim(className:lower()), {
         -- backend package
         {'in', {'clientprefs', 'backend.clientprefs'}, function()
