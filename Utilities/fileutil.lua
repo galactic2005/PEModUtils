@@ -93,6 +93,17 @@ function fileutil.getModsList(type)
     return listOfMods
 end
 
+--- Checks if `fileString` is a folder or not by searching for a period (.)
+---@param fileString string
+---@param startFromCurrentModDirectory boolean
+---@return boolean
+function fileUtil.isFolder(fileString, startFromCurrentModDirectory)
+    if startFromCurrentModDirectory then
+        fileString = 'mods/' .. currentModDirectory .. '/' .. fileString
+    end
+    return not fileString:find('%.')
+end
+
 --- Converts lua scripts to remove their depreciate counterparts
 ---
 --- As this currently only renames functions, remember to manually touch-up your script.
@@ -224,7 +235,7 @@ end
 ---
 --- If `linePosition` isn't specified, then this function will return a random line of content.
 --- @param path string
---- @param startFromModDirectory boolean
+--- @param startFromCurrentModDirectory boolean
 --- @param linePosition? integer
 --- @return string
 --- @return nil

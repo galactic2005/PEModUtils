@@ -1,0 +1,7 @@
+{
+    "recommendations": [
+        "snirozu.funkin-script-autocompleter",
+        "sumneko.lua",
+        "davidanson.vscode-markdownlint"
+    ]
+}

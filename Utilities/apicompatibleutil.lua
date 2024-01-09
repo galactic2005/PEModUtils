@@ -559,7 +559,7 @@ end
 --- Refer to the documenation for `setPropertyFromClass` for more information on this function
 --- @param classVar string
 --- @param variable string
---- @param value dynamic
+--- @param value any
 --- @param allowMaps? boolean
 function apicompatibleutil.setPropertyFromClass(classVar, variable, value, allowMaps)
     assert(type(classVar) == 'string', 'Expected string for classVar, got ' .. type(classVar) .. '.') -- use only strings for classVar

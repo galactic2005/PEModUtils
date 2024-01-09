@@ -61,7 +61,7 @@ A version of `getPropertyFromClass` that automatically converts variables using 
 
 Refer to the documenation for `getPropertyFromClass` for more information on this function.
 
-### setPropertyFromClass(classVar:String, variable:String, value:Dynamic, ?allowMaps:Boolean = false)
+### setPropertyFromClass(classVar:String, variable:String, value:Any, ?allowMaps:Boolean = false)
 
 A version of `setPropertyFromClass` that automatically converts variables using the other functions listed.
 

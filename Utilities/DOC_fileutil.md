@@ -19,6 +19,10 @@ mostRecentFileWrittenTo = ''
 
 ## Functions
 
+### isFolder(fileString:String, startFromCurrentModDirectory:Boolean)
+
+Checks if `fileString` is a folder or not by searching for a period.
+
 ### getModsList(type:String)
 
 Gets the current mods list from `modsList.txt`.
