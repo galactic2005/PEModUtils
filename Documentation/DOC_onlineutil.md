@@ -40,7 +40,7 @@ tablePlayerStatStrings = {
 
 ## Functions
 
-### getPlayerStat(player:Dynamic, stat:String)
+### getPlayerStat(player: dynamic, stat: string)
 
 Returns a player's current stat. If `player` isn't one or two or if the `stat` does not exist, then it'll return `nil`.
 
@@ -60,7 +60,7 @@ The following stats can be retrieved:
 * `hasEnded` - Checks if the player has ended the song or not.
 * `ping` - The current ping the player has in miliseconds.
 
-### getPlayerStatsTable(player:Dynamic)
+### getPlayerStatsTable(player: dynamic)
 
 Returns a player's current stats as a table. If `player` isn't one or two, then it'll return the following table:
 

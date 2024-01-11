@@ -23,7 +23,7 @@ Enables the HUE/Brt/Sat system that was used before 0.7.0.
 
 Note that this function enables the system for all notes and strums.
 
-### returnCompatibleClassName(className:String)
+### returnCompatibleClassName(className: string)
 
 Returns the class name that is compatible with reflection functions in the version being played.
 
@@ -43,25 +43,25 @@ end
 
 Set `returnClassNameDebugMessage` to `true` if you wish to recieve debug messages when no class name is found.
 
-### returnCompatibleVariableName(className:String, variableName:String)
+### returnCompatibleVariableName(variableName: string, className?: string = 'PlayState')
 
 Returns the variable name that is compatible with reflection functions in the version being played.
 
 Set `returnClassNameDebugMessage` to `true` if you wish to recieve debug messages when no class name or variable name is found.
 
-### returnClientPrefName(clientPrefName:String)
+### returnClientPrefName(clientPrefName: string)
 
 Returns the client preference name that is compatible with reflection functions in the version being played
 
 In version 0.7.0 and above, you are required to prefix the client preference name with `.data` or else it wouldn't work.
 
-### getPropertyFromClass(classVar:String, variable:String, ?allowMaps:Boolean = false)
+### getPropertyFromClass(classVar: string, variable: string, ?allowMaps: boolean = false)
 
 A version of `getPropertyFromClass` that automatically converts variables using the other functions listed.
 
 Refer to the documenation for `getPropertyFromClass` for more information on this function.
 
-### setPropertyFromClass(classVar:String, variable:String, value:Any, ?allowMaps:Boolean = false)
+### setPropertyFromClass(classVar: string, variable: string, value: any, ?allowMaps: boolean = false)
 
 A version of `setPropertyFromClass` that automatically converts variables using the other functions listed.
 

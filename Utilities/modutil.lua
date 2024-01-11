@@ -1,3 +1,5 @@
+local modutil = {}
+
 --- Loads a song from a different mod folder
 ---
 --- `weekJsonPath` starts from `mods/`; to get the current mod directory use the following:
@@ -96,7 +98,7 @@ local loadSongFromAnotherMod = function(weekJsonPath, songTitle, difficultyName)
     loadSong(songTitle, difficultyToLoad)
 end
 
-local modutil = {
+modutil = {
     _VERSION = '2.0.0',
 
     --- The file where dkjson is located

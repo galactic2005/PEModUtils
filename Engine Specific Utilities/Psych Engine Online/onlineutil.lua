@@ -1,3 +1,5 @@
+local onlineutil = {}
+
 --- Returns a player's current stat
 ---
 --- If the `stat` does not exist, then it'll return `nil`
@@ -117,7 +119,7 @@ local toggleOpponentMode = function()
     end
 end
 
-local onlineutil = {
+onlineutil = {
     _VERSION = '3.0.0',
 
     --- Table of default player stats in order

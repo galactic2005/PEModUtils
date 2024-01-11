@@ -1,14 +1,20 @@
+local fileutil = {}
+
 --#region listFile
+
+local listFile = {}
 
 --- Returns the contents of a list file as a table
 ---
---- Refer to `characterList.txt`, `stageList.txt`, or `weekList.txt` for formatting of list files
+--- If `startFromCurrentModDirectory` is not defined, it'll be `true`.
 --- @param path string
---- @param startFromCurrentModDirectory boolean
+--- @param startFromCurrentModDirectory? boolean
 --- @return table
-local listFile_read = function(path, startFromCurrentModDirectory)
+listFile.read = function(path, startFromCurrentModDirectory)
     assert(type(path) == 'string', 'Expected string for path, got ' .. type(path) .. '.') -- use only strings for path
-    assert(type(startFromCurrentModDirectory) == 'boolean', 'Expected boolean for startFromCurrentModDirectory, got ' .. type(startFromCurrentModDirectory) .. '.') -- use only booleans for startFromCurrentModDirectory
+    if startFromCurrentModDirectory == nil then
+        startFromCurrentModDirectory = true
+    end
 
     if not stringEndsWith(path, '.txt') then
         -- user forgot to put .txt in the filename
@@ -41,18 +47,22 @@ local listFile_read = function(path, startFromCurrentModDirectory)
     return contentsOfFile
 end
 
---- Reads one line of content from a file as a string; or `nil` if no file is found or if the file doesn't contain content.
+--- Reads one line of content from a file as a string; or `nil` if no file is found or if the file doesn't contain content
 ---
---- If `linePosition` isn't specified, then this function will return a random line of content.
+--- If `linePosition` isn't defined or is nil, then this function will return a random line of content.
+---
+--- If `startFromCurrentModDirectory` is not defined, it'll be `true`.
 --- @param path string
---- @param startFromCurrentModDirectory boolean
+--- @param startFromCurrentModDirectory? boolean
 --- @param linePosition? integer
 --- @return string
 --- @return nil
-local listFile_readLine = function(path, startFromCurrentModDirectory, linePosition)
+listFile.readLine = function(path, startFromCurrentModDirectory, linePosition)
     -- type asserts
     assert(type(path) == 'string', 'Expected string for path, got ' .. type(path) .. '.') -- use only strings for path
-    assert(type(startFromCurrentModDirectory) == 'boolean', 'Expected boolean for startFromCurrentModDirectory, got ' .. type(startFromCurrentModDirectory) .. '.') -- use only booleans for startFromCurrentModDirectory
+    if startFromCurrentModDirectory == nil then
+        startFromCurrentModDirectory = true
+    end
 
     local listOfContent = fileutil.readListFile(path, startFromCurrentModDirectory)
     if (not listOfContent) or #listOfContent < 1 then
@@ -69,14 +79,18 @@ end
 ---
 --- Any table elements in `tableToInsert` that are not a `number` or `string` will be skipped from being written.
 --- If the file at `path` is an existing file, it'll be overwritten.
----@param path string
----@param tableToInsert table
----@param startFromCurrentModDirectory boolean
-local listFile_write = function(path, tableToInsert, startFromCurrentModDirectory)
+---
+--- If `startFromCurrentModDirectory` is not defined, it'll be `true`.
+--- @param path string
+--- @param tableToInsert table
+--- @param startFromCurrentModDirectory? boolean
+listFile.write = function(path, tableToInsert, startFromCurrentModDirectory)
     -- type asserts
     assert(type(path) == 'string', 'Expected string for path, got ' .. type(path) .. '.') -- use only strings for path
     assert(type(tableToInsert) == 'table', 'Expected table for tableToInsert, got ' .. type(tableToInsert) .. '.')-- use only tables for tableToInsert
-    assert(type(startFromCurrentModDirectory) == 'boolean', 'Expected boolean for startFromCurrentModDirectory, got ' .. type(startFromCurrentModDirectory) .. '.') -- use only booleans for startFromCurrentModDirectory
+    if startFromCurrentModDirectory == nil then
+        startFromCurrentModDirectory = true
+    end
 
     -- table length assert
     assert(#tableToInsert > 0, 'tableToInsert is empty.') --- tableToInsert is empty
@@ -115,8 +129,8 @@ end
 --- * `'active'` - Gets all mods that are active.
 --- * `'inactive'` - Gets all mods that are inactive.
 ---
---- If `type` is not of one of these three strings, then it'll default to `'all'`.
---- @param type string
+--- If `type` is not of one of these three strings, is nil, or isn't defined, it'll default to `'all'`.
+--- @param type? string
 --- @return table
 local getModsList = function(type)
     type = type:lower()
@@ -166,10 +180,17 @@ local getModsList = function(type)
 end
 
 --- Checks if `fileString` is a folder or not by searching for a period (.)
+---
+--- If `startFromCurrentModDirectory` is not defined, it'll be `true`.
 --- @param fileString string
---- @param startFromCurrentModDirectory boolean
+--- @param startFromCurrentModDirectory? boolean
 --- @return boolean
 local isFolder = function(fileString, startFromCurrentModDirectory)
+    assert(type(fileString) == 'string', 'Expected string for fileString, got ' .. type(fileString) .. '.') -- use only strings for fileString
+    if startFromCurrentModDirectory == nil then
+        startFromCurrentModDirectory = true
+    end
+
     if startFromCurrentModDirectory then
         fileString = 'mods/' .. currentModDirectory .. '/' .. fileString
     end
@@ -179,11 +200,15 @@ end
 --- Converts lua scripts to remove their depreciate counterparts
 ---
 --- As this currently only renames functions, remember to manually touch-up your script.
+---
+--- If `startFromCurrentModDirectory` is not defined, it'll be `true`.
 --- @param path string
---- @param startFromCurrentModDirectory boolean
+--- @param startFromCurrentModDirectory? boolean
 local removeDepreciatesFromScript = function(path, startFromCurrentModDirectory)
     assert(type(path) == 'string', 'Expected string for path, got ' .. type(path) .. '.') -- use only strings for path
-    assert(type(startFromCurrentModDirectory) == 'boolean', 'Expected boolean for startFromCurrentModDirectory, got ' .. type(startFromCurrentModDirectory) .. '.') -- use only booleans for startFromCurrentModDirectory
+    if startFromCurrentModDirectory == nil then
+        startFromCurrentModDirectory = true
+    end
 
     if startFromCurrentModDirectory then
         path = currentModDirectory .. '/' .. path
@@ -222,8 +247,8 @@ local removeDepreciatesFromScript = function(path, startFromCurrentModDirectory)
     saveFile(path, result, false)
 end
 
-local fileutil = {
-    _VERSION = '4.0.0',
+fileutil = {
+    _VERSION = '4.0.1',
 
     --- The most recent file used regardless of context
     mostRecentFileUsed = '',
@@ -240,9 +265,9 @@ local fileutil = {
 
     --- list files class
     listFile = {
-        read = listFile_read,
-        readLine = listFile_readLine,
-        write = listFile_write
+        read = listFile.read,
+        readLine = listFile.readLine,
+        write = listFile.write
     }
 }
 

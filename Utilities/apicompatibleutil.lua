@@ -38,6 +38,8 @@ local function switch(term, cases)
     end
 end
 
+--- @param preVersionSeven string
+--- @param versionSeven string
 local function returnBasedOnVersion(preVersionSeven, versionSeven)
     if version < '0.7.0' then
         -- 0.1.0 to 0.6.3h
@@ -47,8 +49,6 @@ local function returnBasedOnVersion(preVersionSeven, versionSeven)
     -- 0.7.0 to 0.7.x
     return versionSeven
 end
-
--- NON-MODULE CODE ABOVE --
 
 --- A version of `getPropertyFromClass` that automatically converts variables using the other functions listed
 ---
@@ -60,9 +60,10 @@ end
 local api_getPropertyFromClass = function(classVar, variable, allowMaps)
     assert(type(classVar) == 'string', 'Expected string for classVar, got ' .. type(classVar) .. '.') -- use only strings for classVar
     assert(type(variable) == 'string', 'Expected string for variable, got ' .. type(variable) .. '.') -- use only strings for variable
-    if not allowMaps then
+    if allowMaps == nil then
         allowMaps = false
     end
+
     return getPropertyFromClass(apicompatibleutil.returnCompatibleClassName(classVar), variable, allowMaps)
 end
 
@@ -76,9 +77,10 @@ end
 local api_setPropertyFromClass = function(classVar, variable, value, allowMaps)
     assert(type(classVar) == 'string', 'Expected string for classVar, got ' .. type(classVar) .. '.') -- use only strings for classVar
     assert(type(variable) == 'string', 'Expected string for variable, got ' .. type(variable) .. '.') -- use only strings for variable
-    if not allowMaps then
+    if allowMaps == nil then
         allowMaps = false
     end
+
     local classToUse = apicompatibleutil.returnCompatibleClassName(classVar)
     setPropertyFromClass(classToUse, apicompatibleutil.returnCompatibleVariableName(classToUse, variable), value, allowMaps)
 end
@@ -116,6 +118,7 @@ end
 --- @return string compatibleClassName
 local returnCompatibleClassName = function(className)
     assert(type(className) == 'string', 'Expected string for className, got ' .. type(className) .. '.') -- use only strings for className
+
     local classNameToReturn = className
     switch(stringTrim(className:lower()), {
         -- backend package
@@ -420,12 +423,17 @@ local returnCompatibleClassName = function(className)
 end
 
 --- Returns the variable name that is compatible with reflection functions in the version being played
---- @param className string
+---
+--- If `className` is nil or isn't defined, it'll return a `PlayState` or `states.PlayState` variable.
 --- @param variableName string
+--- @param className? string
 --- @return string compatibleVariableName
-local returnCompatibleVariableName = function(className, variableName)
-    assert(type(className) == 'string', 'Expected string for className, got ' .. type(className) .. '.') -- use only strings for className
+local returnCompatibleVariableName = function(variableName, className)
     assert(type(variableName) == 'string', 'Expected string for variableName, got ' .. type(variableName) .. '.') -- use only strings for variableName
+    if className == nil then
+        className = 'PlayState'
+    end
+
     local variableNameToReturn = variableName
     switch(stringTrim(className:lower()), {
         -- backend package

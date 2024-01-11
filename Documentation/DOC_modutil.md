@@ -19,7 +19,7 @@ dkJsonFilePath = 'mods/dkjson'
 
 ## Functions
 
-### loadSongFromAnotherMod(weekJsonPath:String, songTitle:String, difficultyName:String)
+### loadSongFromAnotherMod(weekJsonPath: string, songTitle: string, difficultyName: string)
 
 Loads a song from a different mod folder.
 
