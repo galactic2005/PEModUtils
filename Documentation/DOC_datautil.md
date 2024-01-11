@@ -35,7 +35,7 @@ Refer to documenation of  `getPixelColor` for more information on this function.
 
 Refer to <https://haxe.org/manual/std-serialization.html> for more information on serialized data.
 
-#### serializeData(unserializedData: any, forcedDataType?: string|nil)
+#### haxe.serializeData(unserializedData: any, forcedDataType?: string|nil)
 
 Sterializes data in the Haxe format.
 
@@ -78,7 +78,7 @@ local tArray ={
 
 All data that is serialized will be placed into `haxe.serializedData`.
 
-#### unserializeData(serializedData?: string|nil)
+#### haxe.unserializeData(serializedData?: string|nil)
 
 Returns unserialized data created in the Haxe format.
 
@@ -117,7 +117,7 @@ debugPrint(datautil.haxe.serializedData)
 >
 ```
 
-#### unserializeDataWhole(serializedData?: string|nil)
+#### haxe.unserializeDataWhole(serializedData?: string|nil)
 
 Returns a table of the whole unserialized data created in the Haxe format.
 
