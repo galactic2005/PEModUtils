@@ -1,14 +1,14 @@
-# modutil
+# mod
 
 ## Usage
 
-*modutil* is a module used for manipulating mods or reading data from other mods.
+*mod* is a module used to manipulate mods or read data from other mods.
 
 ## Dependencies
 
 * [dkjson](http://dkolf.de/src/dkjson-lua.fsl/home)
 
-Remember to set `modutil.dkJsonFilePath` to the appropiate file path (without the extension or spaces).
+Remember to set `mod.dkJsonFilePath` to the appropiate file path (without the extension or spaces).
 
 ## Variables
 

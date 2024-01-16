@@ -17,12 +17,22 @@ If you have issues working with something in this repository, open an issue!
 To use an utility, simply use `require()` to load the module and all its child functions and variables. Make sure to place the .lua files in their correct place.
 
 ```lua
-local onlineutil = require(currentModDirectory .. '/onlineutil')
+-- Data Serialization
+local haxeserialization = require(currentModDirectory .. '/haxeserialization')
 
-local apicompatibleutil = require(currentModDirectory .. '/apiocmpatibleutil')
-local datautil = require(currentModDirectory .. '/datautil')
-local fileutil = require(currentModDirectory .. '/fileutil')
-local modutil = require(currentModDirectory .. '/modutil')
+
+-- Engine Specific
+local psychonline = require(currentModDirectory .. '/psychonline')
+
+-- File Manipulation
+local file = require(currentModDirectory .. '/file')
+local listfile = require(currentModDirectory .. '/listfile')
+
+-- No Folder
+local apicompatible = require(currentModDirectory .. '/apiocmpatible')
+local color = require(currentModDirectory .. '/color')
+local extramath = require(currentModDirectory .. '/extramath')
+local mod = require(currentModDirectory .. '/mod')
 ```
 
 To confirm it works, you can use `debugPrint()` to print out the `_VERSION` variable of a module.
@@ -31,7 +41,7 @@ To confirm it works, you can use `debugPrint()` to print out the `_VERSION` vari
 debugPrint(fileutil._VERSION) -- returns the current version of fileutil
 ```
 
-Refer to the DOC_ files or the wiki for documentation of utilites.
+Refer to the documentation folder or online wiki for how to utilize the modules.
 
 ### LUA Stage Recreations
 
@@ -41,4 +51,4 @@ Place the associated .json and .lua file into the stages folder of a mod to use.
 
 This utility is free software; you can redistribute it and/or modify it under the terms of the MIT license. See [LICENSE](LICENSE) for details.
 
-Credit is optional, but I highly appreciate it!
+Because of the license, crediting is optional. I do highly appreciate it though and would love to see how you've utilized my works.

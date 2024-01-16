@@ -1,8 +1,8 @@
-# onlineitil
+# psychonline
 
 ## Usage
 
-*onlineutil* is a module used for [Psych Engine Online](https://github.com/Snirozu/Funkin-Psych-Online/) by Snirozu.
+*psychonline* is a module used for [Psych Engine Online](https://github.com/Snirozu/Funkin-Psych-Online/) by Snirozu.
 
 ## Variables
 

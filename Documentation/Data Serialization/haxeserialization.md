@@ -1,41 +1,21 @@
-# datautil
+# haxeserialization
 
 ## Usage
 
-*datautil* is a module used to convert or handle data.
+*haxeserialization* is a module used to handle serialized data in the haxe format through serialization or unserialization
+
+Refer to <https://haxe.org/manual/std-serialization.html> for more information on serialized data.
 
 ## Variables
 
 ```lua
 --- Serialized data that is created from the serializeData function.
-haxe.serializedData = '',
+serializedData = ''
 ```
 
 ## Functions
 
-### round(numberToRound:Number)
-
-Rounds a number to the nearest whole number.
-
-### color Class
-
-#### color.getClientRGBFromStrum(strumNoteID: integer, usePixelRGB?: boolean = false)
-
-Returns a client's RGB preference from a specified strum line as a string hex value. Any version of Psych Engine below 0.7.0 will return a table consisting of nil instead.
-
-`strumNoteID` should be any integer between 0-3.
-
-#### color.getPixelColor(obj: string, x: number, y: number)
-
-A version of `getPixelColor` that automatically converts variables using the other functions listed.
-
-Refer to documenation of  `getPixelColor` for more information on this function.
-
-### haxe Class
-
-Refer to <https://haxe.org/manual/std-serialization.html> for more information on serialized data.
-
-#### haxe.serializeData(unserializedData: any, forcedDataType?: string|nil)
+### serializeData(unserializedData: any, forcedDataType?: string|nil)
 
 Sterializes data in the Haxe format.
 
@@ -65,7 +45,7 @@ local tArray ={
     1,
     2,
     3,
-    
+
     -- object inside array
     {
         ['__tableDef'] = 'object'
@@ -76,9 +56,9 @@ local tArray ={
 }
 ```
 
-All data that is serialized will be placed into `haxe.serializedData`.
+All data that is serialized will be placed into `haxeserialization.serializedData`.
 
-#### haxe.unserializeData(serializedData?: string|nil)
+### unserializeData(serializedData?: string|nil)
 
 Returns unserialized data created in the Haxe format.
 
@@ -98,26 +78,26 @@ Not all serialized data types are currently available. Below is a full list of a
 * String Cache Reference
 * Zero
 
-If `serializedData` is left as nil or blank, then it'll use  `haxe.serializedData`. Unserializing data from this variable will cause it to deplete.
+If `serializedData` is left as nil or blank, then it'll use `haxeserialization.serializedData`. Unserializing data from this variable will cause it to deplete.
 
 Example:
 
 ```lua
 -- 't'
-datautil.haxe.serializedData = 'y1:t'
-debugPrint(datautil.haxe.serializedData)
+haxeserialization.serializedData = 'y1:t'
+
+debugPrint(haxeserialization.serializedData)
 > 'y1:t'
 
 -- unserialize data
-local data = datautil.haxe.unserializeData()
-debugPrint(data)
+debugPrint(haxeserialization.unserializeData())
 > 't'
 
-debugPrint(datautil.haxe.serializedData)
+debugPrint(haxeserialization.unserializeData())
 >
 ```
 
-#### haxe.unserializeDataWhole(serializedData?: string|nil)
+### unserializeDataWhole(serializedData?: string|nil)
 
 Returns a table of the whole unserialized data created in the Haxe format.
 
@@ -125,20 +105,20 @@ Example:
 
 ```lua
 -- 't', 't', 3, 4
-datautil.haxe.serializedData = 'y1:ty1:ti3i4'
+haxeserialization.serializedData = 'y1:ty1:ti3i4'
 
-debugPrint(datautil.haxe.unserializeData())
+debugPrint(haxeserialization.unserializeData())
 > 't'
-debugPrint(datautil.haxe.unserializeData())
+debugPrint(haxeserialization.unserializeData())
 > 't'
-debugPrint(datautil.haxe.unserializeData())
+debugPrint(haxeserialization.unserializeData())
 > 3
-debugPrint(datautil.haxe.unserializeData())
+debugPrint(haxeserialization.unserializeData())
 > 4
 
 -- 't', 't', 3, 4
-datautil.haxe.serializedData = 'y1:ty1:ti3i4'
+haxeserialization.serializedData = 'y1:ty1:ti3i4'
 
-debugPrint(datautil.haxe.unserializeDataWhole())
+debugPrint(haxeserialization.unserializeDataWhole())
 > { 't', 't', 3, 4 }
 ```

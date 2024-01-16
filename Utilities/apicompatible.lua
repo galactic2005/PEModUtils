@@ -50,6 +50,13 @@ local function returnBasedOnVersion(preVersionSeven, versionSeven)
     return versionSeven
 end
 
+local apicompatible = {
+    _VERSION = '1.0.2',
+
+    --- Whether `returnCompatibleClassName` and `returnCompatibleVariableName` output a debug message if no class name was found
+    returnCompatibleNameDebugMessage = false
+}
+
 --- A version of `getPropertyFromClass` that automatically converts variables using the other functions listed
 ---
 --- Refer to the documenation for `getPropertyFromClass` for more information on this function
@@ -57,14 +64,14 @@ end
 --- @param variable string
 --- @param allowMaps? boolean
 --- @return any property
-local api_getPropertyFromClass = function(classVar, variable, allowMaps)
+function apicompatible.getPropertyFromClass(classVar, variable, allowMaps)
     assert(type(classVar) == 'string', 'Expected string for classVar, got ' .. type(classVar) .. '.') -- use only strings for classVar
     assert(type(variable) == 'string', 'Expected string for variable, got ' .. type(variable) .. '.') -- use only strings for variable
     if allowMaps == nil then
         allowMaps = false
     end
 
-    return getPropertyFromClass(apicompatibleutil.returnCompatibleClassName(classVar), variable, allowMaps)
+    return getPropertyFromClass(apicompatible.returnCompatibleClassName(classVar), variable, allowMaps)
 end
 
 --- A version of `setPropertyFromClass` that automatically converts variables using the other functions listed
@@ -74,22 +81,21 @@ end
 --- @param variable string
 --- @param value any
 --- @param allowMaps? boolean
-local api_setPropertyFromClass = function(classVar, variable, value, allowMaps)
+function apicompatible.setPropertyFromClass(classVar, variable, value, allowMaps)
     assert(type(classVar) == 'string', 'Expected string for classVar, got ' .. type(classVar) .. '.') -- use only strings for classVar
     assert(type(variable) == 'string', 'Expected string for variable, got ' .. type(variable) .. '.') -- use only strings for variable
     if allowMaps == nil then
         allowMaps = false
     end
 
-    local classToUse = apicompatibleutil.returnCompatibleClassName(classVar)
-    setPropertyFromClass(classToUse, apicompatibleutil.returnCompatibleVariableName(classToUse, variable), value, allowMaps)
+    local classToUse = apicompatible.returnCompatibleClassName(classVar)
+    setPropertyFromClass(classToUse, apicompatible.returnCompatibleVariableName(classToUse, variable), value, allowMaps)
 end
-
 
 --- Enables the HUE/Brt/Sat system that was used before 0.7.0
 ---
 --- Note that this function enables the system for all notes and strums.
-local enableHueBrtSatNoteColorSystem = function()
+function apicompatible.enableHueBrtSatNoteColorSystem()
     if version < '0.7.0' then
         -- don't run if we're already using the system
         return
@@ -108,7 +114,7 @@ end
 --- Returns the client preference name that is compatible with reflection functions in the version being played
 --- @param clientPrefName string
 --- @return string
-local returnClientPrefName = function(clientPrefName)
+function apicompatible.returnClientPrefName(clientPrefName)
     assert(type(clientPrefName) == 'string', 'Expected string for clientPrefName, got ' .. type(clientPrefName) .. '.') -- use only strings for clientPrefName
     return returnBasedOnVersion(clientPrefName, 'data.' .. clientPrefName)
 end
@@ -116,7 +122,7 @@ end
 --- Returns the class name that is compatible with reflection functions in the version being played
 --- @param className string
 --- @return string compatibleClassName
-local returnCompatibleClassName = function(className)
+function apicompatible.returnCompatibleClassName(className)
     assert(type(className) == 'string', 'Expected string for className, got ' .. type(className) .. '.') -- use only strings for className
 
     local classNameToReturn = className
@@ -428,7 +434,7 @@ end
 --- @param variableName string
 --- @param className? string
 --- @return string compatibleVariableName
-local returnCompatibleVariableName = function(variableName, className)
+function apicompatible.returnCompatibleVariableName(variableName, className)
     assert(type(variableName) == 'string', 'Expected string for variableName, got ' .. type(variableName) .. '.') -- use only strings for variableName
     if className == nil then
         className = 'PlayState'
@@ -549,18 +555,4 @@ local returnCompatibleVariableName = function(variableName, className)
     return variableNameToReturn
 end
 
-local apicompatibleutil = {
-    _VERSION = '1.0.2',
-
-    --- Whether `returnCompatibleClassName` and `returnCompatibleVariableName` output a debug message if no class name was found
-    returnCompatibleNameDebugMessage = false,
-
-    enableHueBrtSatNoteColorSystem = enableHueBrtSatNoteColorSystem,
-    getPropertyFromClass = api_getPropertyFromClass,
-    returnClientPrefName = returnClientPrefName,
-    returnCompatibleClassName = returnCompatibleClassName,
-    returnCompatibleVariableName = returnCompatibleVariableName,
-    setPropertyFromClass = api_setPropertyFromClass
-}
-
-return apicompatibleutil
+return apicompatible

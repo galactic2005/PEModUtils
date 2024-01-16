@@ -1,12 +1,12 @@
-# apicompatibleutil
+# apicompatible
 
 ## Usage
 
-*apicompatibleutil* is a module used to make compatibility easier between different versions of PE.
+*apicompatible* is a module used to make compatibility easier between different versions of Pysch Engine.
 
-This module can be used not only for compatibility for older versions of PE, but also newer versions when they release by updating this module.
+This module is used for both compatibility with older versions of Psych Engine, alongside newer versions when they come out and this module is updated accordingly.
 
-Note that this module does not promise nor provides 100% compatibility, especially with complex scripts or of scripts that rely on newer content not present in older versions.
+> Note that this module does not promise nor provides 100% compatibility, especially with complex scripts or of scripts that rely on newer content not present in older versions (object functions, RGB note colors, etc..)
 
 ## Variables
 
@@ -30,15 +30,13 @@ Returns the class name that is compatible with reflection functions in the versi
 Example:
 
 ```lua
-function onCreate()
-    local playStateName = apicompatibleutil.returnCompatableClassName('PlayState') -- get compatible version of 'PlayState'
-    debugPrint(playStateName)
+local playStateName = apicompatible.returnCompatableClassName('PlayState') -- get compatible version of 'PlayState'
+debugPrint(playStateName)
 
-    --[[ 
-        returns 'PlayState' if 0.6.3 or lower
-        returns 'states.PlayState' if 0.7.0 or higher
-    ]]
-end
+--[[
+    returns 'PlayState' if 0.6.3 or lower
+    returns 'states.PlayState' if 0.7.0 or higher
+]]
 ```
 
 Set `returnClassNameDebugMessage` to `true` if you wish to recieve debug messages when no class name is found.

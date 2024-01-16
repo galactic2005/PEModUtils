@@ -1,4 +1,9 @@
-local modutil = {}
+local mod = {
+    _VERSION = '2.0.0',
+
+    --- The file where dkjson is located
+    dkJsonFilePath = 'mods/dkjson'
+}
 
 --- Loads a song from a different mod folder
 ---
@@ -10,7 +15,7 @@ local modutil = {}
 --- @param weekJsonPath string
 --- @param songTitle string
 --- @param difficultyName string
-local loadSongFromAnotherMod = function(weekJsonPath, songTitle, difficultyName)
+function mod.loadSongFromAnotherMod(weekJsonPath, songTitle, difficultyName)
     assert(type(weekJsonPath) == 'string', 'Expected string for weekJsonPath, got ' .. type(weekJsonPath) .. '.') -- use only strings for weekJsonPath
     assert(type(songTitle) == 'string', 'Expected string for songTitle, got ' .. type(songTitle) .. '.') -- use only strings for songTitle
     assert(type(difficultyName) == 'string', 'Expected string for difficultyName, got ' .. type(difficultyName) .. '.') -- use only strings for difficultyName
@@ -55,12 +60,12 @@ local loadSongFromAnotherMod = function(weekJsonPath, songTitle, difficultyName)
     -- does the difficulty we're trying to play even exist.
     local difficultyToLoad = nil
     for i = 1, #difficultiesAsTable, 1 do
-        if string.lower(difficultiesAsTable[i]) == 'normal' then
+        if (difficultiesAsTable[i]):lower() == 'normal' then
             -- normal difficulty should be treated as default difficulty
             difficultiesAsTable[i] = 'Normal'
         end
 
-        if string.lower(difficultiesAsTable[i]) == difficultyName then
+        if (difficultiesAsTable[i]):lower() == difficultyName then
             difficultyToLoad = i - 1
         end
     end
@@ -81,11 +86,9 @@ local loadSongFromAnotherMod = function(weekJsonPath, songTitle, difficultyName)
     for i = 1, math.max(#difficultiesAsTable, getPropertyFromClass(classForDifficulty, difficultyArrayInClass .. '.length')), 1 do
         local difficultyNameFromHaxeArray = difficultyArrayInClass .. '[' .. i - 1 .. ']'
 
-        if difficultiesAsTable[i] ~= nil then
-            -- not nill because something there, funny
-            setPropertyFromClass(classForDifficulty, difficultyNameFromHaxeArray, difficultiesAsTable[i])
-        else
-            -- nil because nothing there, scary
+        setPropertyFromClass(classForDifficulty, difficultyNameFromHaxeArray, difficultiesAsTable[i])
+        if difficultiesAsTable[i] == nil then
+            -- nil because nothing there
             setPropertyFromClass(classForDifficulty, difficultyNameFromHaxeArray, nil)
             setPropertyFromClass(classForDifficulty, difficultyArrayInClass .. '.length', i - 1)
         end
@@ -98,13 +101,4 @@ local loadSongFromAnotherMod = function(weekJsonPath, songTitle, difficultyName)
     loadSong(songTitle, difficultyToLoad)
 end
 
-modutil = {
-    _VERSION = '2.0.0',
-
-    --- The file where dkjson is located
-    dkJsonFilePath = 'mods/dkjson',
-
-    loadSongFromAnotherMod = loadSongFromAnotherMod
-}
-
-return modutil
+return mod
