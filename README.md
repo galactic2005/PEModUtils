@@ -16,9 +16,14 @@ If you have issues working with something in this repository, open an issue!
 To use an utility, simply use `require()` to load the module and all its child functions and variables. Make sure to place the .lua files in their correct place.
 
 ```lua
+-- No Folder
+local apicompatible = require(currentModDirectory .. '/apiocmpatible')
+local color = require(currentModDirectory .. '/color')
+local extramath = require(currentModDirectory .. '/extramath')
+local mod = require(currentModDirectory .. '/mod')
+
 -- Data Serialization
 local haxeserialization = require(currentModDirectory .. '/haxeserialization')
-
 
 -- Engine Specific
 local psychonline = require(currentModDirectory .. '/psychonline')
@@ -26,12 +31,6 @@ local psychonline = require(currentModDirectory .. '/psychonline')
 -- File Manipulation
 local file = require(currentModDirectory .. '/file')
 local listfile = require(currentModDirectory .. '/listfile')
-
--- No Folder
-local apicompatible = require(currentModDirectory .. '/apiocmpatible')
-local color = require(currentModDirectory .. '/color')
-local extramath = require(currentModDirectory .. '/extramath')
-local mod = require(currentModDirectory .. '/mod')
 ```
 
 To confirm it works, you can use `debugPrint()` to print out the `_VERSION` variable of a module.
