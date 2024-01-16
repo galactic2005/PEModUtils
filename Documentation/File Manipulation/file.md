@@ -41,15 +41,15 @@ Example:
 ]]
 
 debugPrint(getModsList('all'))
-> { 'Mod One', 'Mod Two', 'Mod Three', 'Mod Four' }
+-- { 'Mod One', 'Mod Two', 'Mod Three', 'Mod Four' }
 
 debugPrint(getModsList('active'))
 debugPrint(getModsList(true))
-> { 'Mod One', 'Mod Two' }
+-- { 'Mod One', 'Mod Two' }
 
 debugPrint(getModsList('inactive'))
 debugPrint(getModsList(false))
-> { 'Mod Three', 'Mod Four' }
+-- { 'Mod Three', 'Mod Four' }
 
 ```
 

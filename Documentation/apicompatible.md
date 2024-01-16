@@ -30,9 +30,7 @@ Returns the class name that is compatible with reflection functions in the versi
 Example:
 
 ```lua
-local playStateName = apicompatible.returnCompatableClassName('PlayState') -- get compatible version of 'PlayState'
-debugPrint(playStateName)
-
+debugPrint(apicompatible.returnCompatableClassName('PlayState'))
 --[[
     returns 'PlayState' if 0.6.3 or lower
     returns 'states.PlayState' if 0.7.0 or higher

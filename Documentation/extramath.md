@@ -16,13 +16,13 @@ Example:
 local number = 10
 
 debugPrint(extramath.clamp(number, 0, 30))
-> 10
+-- 10
 
 debugPrint(extramath.clamp(number, 20, 30))
-> 20
+-- 20
 
 debugPrint(extramath.clamp(number, 0, 5))
-> 5
+-- 5
 ```
 
 ### round(numberToRound: number)

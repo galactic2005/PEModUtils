@@ -87,14 +87,14 @@ Example:
 haxeserialization.serializedData = 'y1:t'
 
 debugPrint(haxeserialization.serializedData)
-> 'y1:t'
+-- 'y1:t'
 
 -- unserialize data
 debugPrint(haxeserialization.unserializeData())
-> 't'
+-- 't'
 
 debugPrint(haxeserialization.unserializeData())
->
+--
 ```
 
 ### unserializeDataWhole(serializedData?: string|nil)
@@ -108,17 +108,17 @@ Example:
 haxeserialization.serializedData = 'y1:ty1:ti3i4'
 
 debugPrint(haxeserialization.unserializeData())
-> 't'
+-- 't'
 debugPrint(haxeserialization.unserializeData())
-> 't'
+-- 't'
 debugPrint(haxeserialization.unserializeData())
-> 3
+-- 3
 debugPrint(haxeserialization.unserializeData())
-> 4
+-- 4
 
 -- 't', 't', 3, 4
 haxeserialization.serializedData = 'y1:ty1:ti3i4'
 
 debugPrint(haxeserialization.unserializeDataWhole())
-> { 't', 't', 3, 4 }
+-- { 't', 't', 3, 4 }
 ```
