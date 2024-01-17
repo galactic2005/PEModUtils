@@ -6,11 +6,13 @@ Thank you for taking the time to contribute to this project! My goal with this p
 * Providing code that contains error-handling and easily understood error states.
 * Providing resources that speed up mod development.
 
-Before you begin, please note that all files in this repository are licensed under the MIT License. See [LICENSE](LICENSE) for details.
-
-## Contact
+Before you begin, please note that all files in this repository are licensed under the MIT License; this will also include your work. See [LICENSE](LICENSE) for details.
 
 If you need to contact me you can contact me through Discord at `galactic_2005`.
+
+## Cloning
+
+You can clone the Experimental branch
 
 ## Code
 
@@ -19,6 +21,10 @@ To keep code maintainable, optimized, and readable, a style guide is enforced. S
 ## Documentation
 
 To keep documentation clean and usable, a style guide is enforced. See [DOCSTYLEGUIDE](Contributing/DOCSTYLEGUIDE.md) for details.
+
+## Pull Request Creation
+
+Make sure all Pull Requests go into the Experimental branch.
 
 ## Helpful Resources
 
