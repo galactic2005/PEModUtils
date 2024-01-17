@@ -1,6 +1,6 @@
 # Contributing to PEModUtils
 
-Thank you for taking the time to contribute to this project! My goal with this project is to help LUA scripters through:
+Thank you for taking the time to contribute to this project! My goal with this project is to help Lua scripters through:
 
 * Providing code that is documented, optimized, and readable.
 * Providing code that contains error-handling and easily understood error states.

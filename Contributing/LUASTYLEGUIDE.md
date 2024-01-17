@@ -1,12 +1,8 @@
 # Lua Style Guide
 
-This style guide contains a list of guidelines to follow for PEModUtils to provide consistency across every LUA file or code block snippet in Markdown.
+This style guide contains a list of guidelines to follow for PEModUtils to provide consistency across every Lua file or code block snippet in Markdown.
 
-This style guide was based upon [Olivine's Labs LUA Style Guide](https://github.com/Olivine-Labs/lua-style-guide).
-
-## Table of Contents
-
-* [Comments](Comments)
+This style guide was based upon [Olivine's Labs Lua Style Guide](https://github.com/Olivine-Labs/lua-style-guide).
 
 ## Comments
 

@@ -4,7 +4,7 @@
 
 *PEModUtils* is a repository containing various premade assets available to use for [Psych Engine](https://github.com/ShadowMario/FNF-PsychEngine) or any engines built off it.
 
-* LUA Stage Recreations - stage recreations made in LUA.
+* Lua Stage Recreations - stage recreations made in Lua.
 * Utilities - utilities made for a variety of use cases.
 
 This allows you to focus on what's needed in your project with not having to deal with manually creating backend code or debugging code.
@@ -19,7 +19,7 @@ Use [git](https://git-scm.com/) to clone.
 git clone https://github.com/galactic2005/PEModUtils.git
 ```
 
-### LUA Stage Recreations
+### Lua Stage Recreations
 
 Place the associated `.json` and `.lua` file into the `stages/` folder of a mod.
 
