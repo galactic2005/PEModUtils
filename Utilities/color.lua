@@ -40,6 +40,7 @@ end
 --- @param obj string
 --- @param x number
 --- @param y number
+--- @return string
 function color.getPixelColor(obj, x, y)
     return decimalToHex(getPixelColor(obj, tonumber(x), tonumber(y)), 7)
 end

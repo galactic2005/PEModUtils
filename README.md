@@ -36,7 +36,7 @@ Altnatively, you can contact me through Discord at `galactic_2005`. I'll be sure
 
 ## Contributing
 
-This repository is open to contributions. See [CONTRIBUTING](CONTRIBUTING) for details.
+This repository is open to contributions. See [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ## License
 
