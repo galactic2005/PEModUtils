@@ -11,6 +11,14 @@ This allows you to focus on what's needed in your project with not having to dea
 
 ## Setup/Usage
 
+### Cloning
+
+Use [git](https://git-scm.com/) to clone.
+
+```git
+git clone https://github.com/galactic2005/PEModUtils.git
+```
+
 ### LUA Stage Recreations
 
 Place the associated `.json` and `.lua` file into the `stages/` folder of a mod.
