@@ -4,7 +4,7 @@
 
 *color* is a module used to manipulate colors.
 
-## Variables
+## Functions
 
 ### getClientRGBFromStrum(strumNoteID: integer, usePixelRGB?: boolean = false)
 

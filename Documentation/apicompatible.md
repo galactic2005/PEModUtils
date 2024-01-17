@@ -10,10 +10,7 @@ This module is used for both compatibility with older versions of Psych Engine, 
 
 ## Variables
 
-```lua
---- Whether `returnCompatibleClassName` and `returnCompatibleVariableName` output a debug message if no class name was found
-returnClassNameDebugMessage = false
-```
+* `returnClassNameDebugMessage = false` - whether `returnCompatibleClassName` and `returnCompatibleVariableName` output a debug message if no class name was found.
 
 ## Functions
 

@@ -1,4 +1,5 @@
 local listfile = {
+    _AUTHORS = 'galactic_2005',
     _VERSION = '1.0.0',
 
     --- The most recent list file used regardless of context

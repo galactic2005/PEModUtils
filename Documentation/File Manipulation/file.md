@@ -6,16 +6,11 @@
 
 ## Variables
 
-```lua
---- The most recent file used regardless of context
-mostRecentFileUsed = ''
+* `mostRecentFileUsed = ''` - the most recent file used regardless of context.
 
---- The most recent file read from
-mostRecentFileReadFrom = ''
+* `mostRecentFileReadFrom = ''` - the most recent file read from.
 
---- The most recent file written to
-mostRecentFileWrittenTo = ''
-```
+* `mostRecentFileWrittenTo = ''` - the most recent file written to.
 
 ## Functions
 

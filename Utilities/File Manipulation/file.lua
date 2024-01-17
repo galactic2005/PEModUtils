@@ -1,4 +1,5 @@
 local file = {
+    _AUTHORS = 'galactic_2005',
     _VERSION = '5.0.0',
 
     --- The most recent file used regardless of context
@@ -39,7 +40,7 @@ function file.getModsList(fetchType)
             fetchType = 'all'
         end
     end
-    assert(checkFileExists('modsList.txt', true), 'modsList.txt does not exist.') -- modsList.txt does not exist
+    assert(checkFileExists('modsList.txt', true), 'modsList.txt does not exist.') -- make sure modsList.txt exists
 
     local modsListFile = getTextFromFile('../modsList.txt', false)
     file.mostRecentFileUsed = 'modsList.txt'
@@ -116,17 +117,16 @@ function file.removeDepreciatesFromScript(filePath, startFromCurrentModDirectory
         -- user forgot to put .lua in the filename
         filePath = filePath .. '.lua'
     end
-    assert(checkFileExists(filePath, false), 'File at ' .. filePath .. ' does not exist.') -- file does not exist
+    assert(checkFileExists(filePath, false), 'File at ' .. filePath .. ' does not exist.') -- make sure the file you've selected exists
     file.mostRecentFileUsed = filePath
     file.mostRecentFileReadFrom = filePath
     file.mostRecentFileWrittenTo = filePath
 
     -- get text from file
-    local file = getTextFromFile(filePath, false)
+    local luaFile = getTextFromFile(filePath, false)
 
     -- lots of gsub
-    local result = nil
-    result = file:gsub('luaSpriteMakeGraphic', 'makeGraphic')
+    local result = luaFile:gsub('luaSpriteMakeGraphic', 'makeGraphic')
     result = result:gsub('luaSpriteAddAnimationByPrefix', 'addAnimationByPrefix')
     result = result:gsub('luaSpriteAddAnimationByIndices', 'addAnimationByIndices')
     result = result:gsub('addAnimationByIndicesLoop', 'addAnimationByIndices')

@@ -8,24 +8,17 @@ Refer to `characterList.txt`, `stageList.txt`, or `weekList.txt` for the formatt
 
 ## Variables
 
-```lua
---- The most recent file used regardless of context
-mostRecentFileUsed = ''
+* `mostRecentFileUsed = ''` - the most recent file used regardless of context.
 
---- The most recent file read from
-mostRecentFileReadFrom = ''
+* `mostRecentFileReadFrom = ''` - the most recent file read from.
 
---- The most recent file written to
-mostRecentFileWrittenTo = ''
-```
+* `mostRecentFileWrittenTo = ''` - the most recent file written to.
 
 ## Functions
 
-### read(filePath:String, startFromCurrentModDirectory:Boolean)
+### read(filePath: string, startFromCurrentModDirectory?: boolean = true)
 
 Returns the contents of a list file as a table.
-
-If `startFromCurrentModDirectory` is not defined, it'll be `true`.
 
 ### readLine(filePath: string, startFromCurrentModDirectory?: boolean = true, linePosition?: integer)
 

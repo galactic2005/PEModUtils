@@ -1,5 +1,5 @@
 -- support for more smokes
-local dadbattleSmokes = {'smoke_0', 'smoke_1'}
+local dadbattleSmokes = { 'smoke_0', 'smoke_1' }
 
 function onCreate()
     makeLuaSprite('bg', 'stageback', -600, -200)
@@ -79,7 +79,9 @@ function onCreate()
     setProperty('smoke_1.visible', false)
 end
 
-function onEvent(eventName, value1, value2, strumTime)
+--- @param eventName string
+--- @param value1 string
+function onEvent(eventName, value1, _, _)
     if eventName == 'Dadbattle Spotlight' then
         if value1 == '' then
             value1 = '0'
@@ -122,13 +124,15 @@ function onEvent(eventName, value1, value2, strumTime)
     end
 end
 
-function onTimerCompleted(tag, loops, loopsLeft)
+--- @param tag string
+function onTimerCompleted(tag, _, _)
     if tag == 'dadbattleLightTimer' then
         setProperty('dadbattleLight.alpha', 0.375)
     end
 end
 
-function onTweenCompleted(tag, vars)
+--- @param tag string
+function onTweenCompleted(tag, _)
     if tag == 'dadbattleFog0_fadeOut' then
         for i = 0, #dadbattleSmokes do
             setProperty('smoke_' .. i .. '.visible', false)

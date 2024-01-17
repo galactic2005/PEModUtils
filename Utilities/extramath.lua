@@ -1,8 +1,9 @@
 local extramath = {
+    _AUTHORS = 'galactic_2005',
     _VERSION = '1.0.0'
 }
 
---- Clamps a number between two numbers
+--- Returns a number that's clamped between two numbers
 --- @param numberToClamp number
 --- @param minimumClamp number
 --- @param maximumClamp number
@@ -16,7 +17,7 @@ function extramath.clamp(numberToClamp, minimumClamp, maximumClamp)
     return numberToClamp
 end
 
---- Rounds a number to the nearest whole number
+--- Returns a number that's rounded nearest whole number
 --- @param numberToRound number
 --- @return number
 function extramath.round(numberToRound)

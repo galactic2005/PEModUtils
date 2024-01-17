@@ -8,7 +8,7 @@
 
 ### clamp(numberToClamp: number, minimumClamp: number, maximumClamp: number)
 
-Clamps a number between two numbers.
+Returns a number that's clamped between two numbers.
 
 Example:
 
@@ -27,4 +27,4 @@ debugPrint(extramath.clamp(number, 0, 5))
 
 ### round(numberToRound: number)
 
-Rounds a number to the nearest whole number.
+Returns a number that's rounded nearest whole number.

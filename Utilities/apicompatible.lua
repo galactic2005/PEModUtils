@@ -1,3 +1,11 @@
+local apicompatible = {
+    _AUTHORS = 'galactic_2005',
+    _VERSION = '1.0.2',
+
+    --- Whether `returnCompatibleClassName` and `returnCompatibleVariableName` output a debug message if no class name was found
+    returnCompatibleNameDebugMessage = false
+}
+
 -- http://lua-users.org/wiki/SwitchStatement
 --
 -- thanks LHF, DaveBollinger, EricTetz, and PeterPrade
@@ -49,13 +57,6 @@ local function returnBasedOnVersion(preVersionSeven, versionSeven)
     -- 0.7.0 to 0.7.x
     return versionSeven
 end
-
-local apicompatible = {
-    _VERSION = '1.0.2',
-
-    --- Whether `returnCompatibleClassName` and `returnCompatibleVariableName` output a debug message if no class name was found
-    returnCompatibleNameDebugMessage = false
-}
 
 --- A version of `getPropertyFromClass` that automatically converts variables using the other functions listed
 ---

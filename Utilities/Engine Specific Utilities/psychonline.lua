@@ -1,4 +1,5 @@
 local psychonline = {
+    _AUTHORS = 'galactic_2005',
     _VERSION = '3.0.0',
 
     --- Table of default player stats in order

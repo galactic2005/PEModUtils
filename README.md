@@ -2,51 +2,42 @@
 
 ![Banner](banner.png)
 
-A repository containing various premade assets available to use for [Psych Engine](https://github.com/ShadowMario/FNF-PsychEngine) or any engines built off it.
+*PEModUtils* is a repository containing various premade assets available to use for [Psych Engine](https://github.com/ShadowMario/FNF-PsychEngine) or any engines built off it.
 
 * LUA Stage Recreations - stage recreations made in LUA.
 * Utilities - utilities made for a variety of use cases.
 
-If you have issues working with something in this repository, open an issue!
+This allows you to focus on what's needed in your project with not having to deal with manually creating backend code or debugging code.
 
-## How to Use
-
-### Utilities
-
-To use an utility, simply use `require()` to load the module and all its child functions and variables. Make sure to place the .lua files in their correct place.
-
-```lua
--- No Folder
-local apicompatible = require(currentModDirectory .. '/apiocmpatible')
-local color = require(currentModDirectory .. '/color')
-local extramath = require(currentModDirectory .. '/extramath')
-local mod = require(currentModDirectory .. '/mod')
-
--- Data Serialization
-local haxeserialization = require(currentModDirectory .. '/haxeserialization')
-
--- Engine Specific
-local psychonline = require(currentModDirectory .. '/psychonline')
-
--- File Manipulation
-local file = require(currentModDirectory .. '/file')
-local listfile = require(currentModDirectory .. '/listfile')
-```
-
-To confirm it works, you can use `debugPrint()` to print out the `_VERSION` variable of a module.
-
-```lua
-debugPrint(fileutil._VERSION) -- returns the current version of fileutil
-```
-
-Refer to the documentation folder or online wiki for how to utilize the modules.
+## Setup/Usage
 
 ### LUA Stage Recreations
 
-Place the associated .json and .lua file into the stages folder of a mod to use.
+Place the associated `.json` and `.lua` file into the `stages/` folder of a mod.
 
-## Licensing and Usage
+### Utilities
+
+To use an utility, use `require()`.
+
+```lua
+local file = require(currentModDirectory .. '/file')
+
+-- returns the current version of file
+debugPrint(file._VERSION)
+```
+
+Refer to the `Documentation/` folder or the [PEModUtils Wiki](https://github.com/galactic2005/PEModUtils/wiki) for information on modules and how to use them.
+
+## Help
+
+If you need help with how to use something in this repository or if there's a problem with code, please open an issue.
+
+Altnatively, you can contact me through Discord at `galactic_2005`. I'll be sure to provide assistance to the best of my ability.
+
+## Contributing
+
+This repository is open to contributions. See [CONTRIBUTING](CONTRIBUTING) for details.
+
+## License
 
 This utility is free software; you can redistribute it and/or modify it under the terms of the MIT license. See [LICENSE](LICENSE) for details.
-
-Because of the license, crediting is optional. I do highly appreciate it though and would love to see how you've utilized my works.

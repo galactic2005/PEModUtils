@@ -6,16 +6,11 @@
 
 ## Dependencies
 
-* [dkjson](http://dkolf.de/src/dkjson-lua.fsl/home)
-
-Remember to set `mod.dkJsonFilePath` to the appropiate file path (without the extension or spaces).
+* [dkjson](http://dkolf.de/src/dkjson-lua.fsl/home) - `dkJsonFilePath`
 
 ## Variables
 
-```lua
---- The file where dkjson is located
-dkJsonFilePath = 'mods/dkjson'
-```
+* `dkJsonFilePath = 'mods/dkjson'` - the file where dkjson is located.
 
 ## Functions
 

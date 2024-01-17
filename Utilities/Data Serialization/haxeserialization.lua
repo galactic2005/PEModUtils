@@ -1,4 +1,7 @@
 local haxeserialization = {
+    _AUTHORS = 'galactic_2005',
+    _VERSION = '1.0.0',
+
     --- Serialized data that is created from the serializeData function.
     serializedData = ''
 }

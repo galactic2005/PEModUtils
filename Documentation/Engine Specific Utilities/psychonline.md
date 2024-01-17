@@ -6,37 +6,10 @@
 
 ## Variables
 
-```lua
---- Table of default player stats in order
-tableDefaultPlayerStats = {
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    '',
-    false,
-    false,
-    false,
-    0
-}
+* `tableDefaultPlayerStats = { 0, 0, 0, 0, 0, 0, '', false, false, false, 0 }` - table of default player stats in order.
 
---- Table of player stats in order as defined in `online/scheme/Player.hx`
-tablePlayerStatStrings = {
-    'score',
-    'misses',
-    'sicks',
-    'goods',
-    'bads',
-    'shits',
-    'name',
-    'hasSong',
-    'hasLoaded',
-    'hasEnded',
-    'ping'
-}
-```
+* `tablePlayerStatStrings = { 'score', 'misses', 'sicks', 'goods', 'bads', 'shits', 'name', 'hasSong', 'hasLoaded', 'hasEnded', 'ping' }` - table of player stats in order as defined in `online/scheme/Player.hx`
+
 
 ## Functions
 

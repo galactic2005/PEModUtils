@@ -1,4 +1,5 @@
 local mod = {
+    _AUTHORS = 'galactic_2005',
     _VERSION = '2.0.0',
 
     --- The file where dkjson is located
@@ -38,7 +39,13 @@ function mod.loadSongFromAnotherMod(weekJsonPath, songTitle, difficultyName)
 
     -- decode the json
     local jsonFileDK = dkjson.decode(jsonContent, 1, nil)
-    local difficultyList = jsonFileDK.difficulties
+
+    local difficultyList = ''
+    if jsonFileDK.difficulties == nil or jsonFileDK.difficulties == '' then
+        difficultyList = 'Easy, Normal, Hard'
+    else
+        difficultyList = jsonFileDK.difficulties
+    end
 
     local difficultiesAsTable = {}
     local returnLineOfContent = {}
