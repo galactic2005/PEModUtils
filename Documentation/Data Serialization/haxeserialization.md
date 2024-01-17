@@ -8,10 +8,7 @@ Refer to <https://haxe.org/manual/std-serialization.html> for more information o
 
 ## Variables
 
-```lua
---- Serialized data that is created from the serializeData function.
-serializedData = ''
-```
+* `serializedData = ''` - derialized data that is created from the serializeData function.
 
 ## Functions
 

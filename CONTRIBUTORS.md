@@ -10,6 +10,6 @@ A markdown file dedicated to those who have spent time in any way or form to thi
 
 * [Rocsthepie](https://github.com/Rocsthepie) - inspired me to create file and listfile
 
-* [spark-the-dragon](https://github.com/spark-the-dragon) - inspired me to create apicompatible, haxeserialization, and mod
+* [Spark](https://twitter.com/SparkSFW1) - inspired me to create apicompatible, haxeserialization, and mod
 
 * [TattleameliaMLG](https://twitter.com/TattleameliaMLG) - inspired me to create color
