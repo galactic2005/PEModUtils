@@ -38,6 +38,8 @@ Altnatively, you can contact me through Discord at `galactic_2005`. I'll be sure
 
 This repository is open to contributions. See [CONTRIBUTING](CONTRIBUTING.md) for details.
 
+If you'd like to see who contributed, see [CONTRIBUTORS](CONTRIBUTORS.md)
+
 ## License
 
 This utility is free software; you can redistribute it and/or modify it under the terms of the MIT license. See [LICENSE](LICENSE) for details.
