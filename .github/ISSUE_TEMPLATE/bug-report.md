@@ -8,7 +8,7 @@ assignees: ''
 ---
 
 **Describe the bug**
-Be clear and concise about the bug
+Be clear and concise about the bug, and provide as much information as you can.
 
 **Reproducing Steps**
 If the bug is related to how a function works, provide steps to reproduce the bug.

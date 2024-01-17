@@ -12,7 +12,15 @@ If you need to contact me you can contact me through Discord at `galactic_2005`.
 
 ## Cloning
 
-You can clone the Experimental branch
+It's recommended to work in the experimental branch so that previous features are left untouched and that code behavior will stay the same for the end-user until they decide to update.
+
+You can clone the experimental branch through the following git command:
+
+```git
+git clone -b experimental https://github.com/galactic2005/PEModUtils.git
+```
+
+Remember to also perform Pull Requests to the experimental branch as well!
 
 ## Code
 
