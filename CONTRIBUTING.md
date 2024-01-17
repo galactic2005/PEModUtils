@@ -12,8 +12,8 @@ If you need to contact me you can contact me through Discord at `galactic_2005`.
 
 ## Code
 
-To keep code maintainable, optimized, and readable, a style guide is enforced. See [LUASTYLEGUIDE](Contributing/LUASTYLEGUIDE) for details.
+To keep code maintainable, optimized, and readable, a style guide is enforced. See [LUASTYLEGUIDE](Contributing/LUASTYLEGUIDE.md) for details.
 
 ## Documentation
 
-To keep documentation clean and usable, a style guide is enforced. See [DOCSTYLEGUIDE](Contributing/DOCSTYLEGUIDE) for details.
+To keep documentation clean and usable, a style guide is enforced. See [DOCSTYLEGUIDE](Contributing/DOCSTYLEGUIDE.md) for details.
