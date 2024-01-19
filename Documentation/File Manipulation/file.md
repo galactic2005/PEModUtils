@@ -14,15 +14,21 @@
 
 ## Functions
 
-### getModsList(type?: boolean|string = 'all')
+### getModsList(modsListfetchType?: any = 'all')
 
 Gets the current mods list from `modsList.txt` as a table.
 
-`type` should be one of the following:
+`modsListfetchType` should be one of the following:
 
 * `'all'` - Gets all mods regardless of activeness; default parameter.
-* `'active'` / `true` - Gets all mods that are active.
-* `'inactive'` / `false` - Gets all mods that are inactive.
+* `'active'` - Gets all mods that are active.
+  * `true` - Boolean value.
+  * `1` - Number value.
+* `'inactive'` - Gets all mods that are inactive.
+  * `false` - Boolean value.
+  * `-1` - Number value.
+
+The all type cannot be set with a boolean. If `modsListfetchType` isn't a boolean, number, or string, it'll default to the all type.
 
 Example:
 
@@ -45,7 +51,6 @@ debugPrint(getModsList(true))
 debugPrint(getModsList('inactive'))
 debugPrint(getModsList(false))
 -- { 'Mod Three', 'Mod Four' }
-
 ```
 
 ### isFolder(fileString: string, startFromCurrentModDirectory?: boolean = true)

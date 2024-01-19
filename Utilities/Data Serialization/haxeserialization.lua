@@ -452,7 +452,7 @@ end
 ---
 --- Refer to https://haxe.org/manual/std-serialization.html for more information on serialization.
 --- @param unserializedData any
---- @param forcedDataType? string|nil
+--- @param forcedDataType? nil|string
 function haxeserialization.serializeData(unserializedData, forcedDataType)
     local dataType = ''
     if not forcedDataType or forcedDataType == '' then
@@ -470,8 +470,9 @@ end
 --- If `serializedData` is left as nil or blank, then it'll use `serializedData`.
 ---
 --- Refer to https://haxe.org/manual/std-serialization.html for more information on serialization.
---- @param serializedData? string|nil
+--- @param serializedData? nil|string
 --- @return any
+--- @nodiscard
 function haxeserialization.unserializeData(serializedData)
     isUsingExternalData = serializedData == nil or serializedData == ''
     if isUsingExternalData then
@@ -489,6 +490,7 @@ end
 --- Returns a table of the whole unserialized data created in the Haxe format
 --- @param serializedData? string|nil
 --- @return table
+--- @nodiscard
 function haxeserialization.unserializeDataWhole(serializedData)
     isUsingExternalData = serializedData == nil or serializedData == ''
 

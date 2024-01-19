@@ -18,6 +18,7 @@ local listfile = {
 --- @param filePath string
 --- @param startFromCurrentModDirectory? boolean
 --- @return table
+--- @nodiscard
 function listfile.read(filePath, startFromCurrentModDirectory)
     assert(type(filePath) == 'string', 'Expected string for path, got ' .. type(filePath) .. '.') -- use only strings for filePath
     if startFromCurrentModDirectory == nil then
@@ -63,8 +64,8 @@ end
 --- @param filePath string
 --- @param startFromCurrentModDirectory? boolean
 --- @param linePosition? integer
---- @return string
---- @return nil
+--- @return nil|string
+--- @nodiscard
 function listfile.readLine(filePath, startFromCurrentModDirectory, linePosition)
     assert(type(filePath) == 'string', 'Expected string for path, got ' .. type(filePath) .. '.') -- use only strings for filePath
     if startFromCurrentModDirectory == nil then
@@ -97,6 +98,7 @@ end
 --- @param tableOfListFiles table
 --- @param indexPosition? number
 --- @return string|table
+--- @nodiscard
 function listfile.readTable(tableOfListFiles, indexPosition)
     assert(type(tableOfListFiles) == 'table', 'Expected table for tableOfListFiles, got ' .. type(tableOfListFiles) .. '.') -- use only tables for tableOfListFiles
     if indexPosition ~= nil then

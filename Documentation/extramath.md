@@ -25,6 +25,41 @@ debugPrint(extramath.clamp(number, 0, 5))
 -- 5
 ```
 
+### lerp(startingValue: number, endingValue: number, interpolationValue: number)
+
+Returns the interpolated number between two numbers.
+
+### negativeAbs(number: number)
+
+Returns the negative absolute of a number.
+
+Example:
+
+```lua
+debugPrint(extramath.negativeAbs(10))
+-- -10
+
+debugPrint(extramath.negativeAbs(-10))
+-- -10
+```
+
 ### round(numberToRound: number)
 
 Returns a number that's rounded nearest whole number.
+
+### sign(number: number)
+
+Returns an integer that indicates the sign of a number.
+
+Example:
+
+```lua
+debugPrint(extramath.sign(5))
+-- 1
+
+debugPrint(extramath.sign(0))
+-- 0
+
+debugPrint(extramath.sign(-5))
+-- -1
+```

@@ -48,6 +48,7 @@ end
 
 --- @param preVersionSeven string
 --- @param versionSeven string
+--- @nodiscard
 local function returnBasedOnVersion(preVersionSeven, versionSeven)
     if version < '0.7.0' then
         -- 0.1.0 to 0.6.3h
@@ -65,6 +66,7 @@ end
 --- @param variable string
 --- @param allowMaps? boolean
 --- @return any property
+--- @nodiscard
 function apicompatible.getPropertyFromClass(classVar, variable, allowMaps)
     assert(type(classVar) == 'string', 'Expected string for classVar, got ' .. type(classVar) .. '.') -- use only strings for classVar
     assert(type(variable) == 'string', 'Expected string for variable, got ' .. type(variable) .. '.') -- use only strings for variable
@@ -115,6 +117,7 @@ end
 --- Returns the client preference name that is compatible with reflection functions in the version being played
 --- @param clientPrefName string
 --- @return string
+--- @nodiscard
 function apicompatible.returnClientPrefName(clientPrefName)
     assert(type(clientPrefName) == 'string', 'Expected string for clientPrefName, got ' .. type(clientPrefName) .. '.') -- use only strings for clientPrefName
     return returnBasedOnVersion(clientPrefName, 'data.' .. clientPrefName)
@@ -123,6 +126,7 @@ end
 --- Returns the class name that is compatible with reflection functions in the version being played
 --- @param className string
 --- @return string compatibleClassName
+--- @nodiscard
 function apicompatible.returnCompatibleClassName(className)
     assert(type(className) == 'string', 'Expected string for className, got ' .. type(className) .. '.') -- use only strings for className
 
@@ -435,6 +439,7 @@ end
 --- @param variableName string
 --- @param className? string
 --- @return string compatibleVariableName
+--- @nodiscard
 function apicompatible.returnCompatibleVariableName(variableName, className)
     assert(type(variableName) == 'string', 'Expected string for variableName, got ' .. type(variableName) .. '.') -- use only strings for variableName
     if className == nil then

@@ -1,6 +1,6 @@
 local file = {
     _AUTHORS = 'galactic_2005',
-    _VERSION = '5.0.0',
+    _VERSION = '5.1.0',
 
     --- The most recent file used regardless of context
     mostRecentFileUsed = '',
@@ -14,31 +14,48 @@ local file = {
 
 --- Gets the current mods list from `modsList.txt` as a table
 ---
---- `fetchType` should be one of the following:
+--- `modsListfetchType` should be one of the following:
 ---
 --- * `'all'` - Gets all mods regardless of activeness.
---- * `'active'` / `true` - Gets all mods that are active.
---- * `'inactive'` / `false` - Gets all mods that are inactive.
+--- * `'active'` - Gets all mods that are active.
+---   * `true` - Boolean value.
+---   * `1` - Number value.
+--- * `'inactive'` - Gets all mods that are inactive.
+---   * `false` - Boolean value.
+---   * `-1` - Number value.
 ---
---- If `fetchType` is not of one of these three strings, is nil, or isn't defined, it'll default to `'all'`.
---- @param fetchType? boolean|string
+--- If `modsListfetchType` isn't a boolean, number, or string, or isn't defined, then it'll default to all.
+--- @param modsListfetchType? any
 --- @return table
-function file.getModsList(fetchType)
-    if type(fetchType) == 'boolean' then
-        if fetchType then
-            fetchType = 'active'
+--- @nodiscard
+function file.getModsList(modsListfetchType)
+    local fetchType = type(modsListfetchType)
+
+    if fetchType == 'boolean' then
+        if modsListfetchType then
+            modsListfetchType = 'active'
         else
-            fetchType = 'inactive'
+            modsListfetchType = 'inactive'
+        end
+    elseif fetchType == 'number' then
+        if modsListfetchType == 1 then
+            modsListfetchType = 'active'
+        elseif modsListfetchType == -1 then
+            modsListfetchType = 'inactive'
+        else
+            modsListfetchType = 'all'
+        end
+    elseif fetchType == 'string' then
+        modsListfetchType = modsListfetchType:lower()
+        if modsListfetchType == 'active' or modsListfetchType == 'enabled' then
+            modsListfetchType = 'active'
+        elseif modsListfetchType == 'inactive' or modsListfetchType == 'disabled' then
+            modsListfetchType = 'inactive'
+        else
+            modsListfetchType = 'all'
         end
     else
-        fetchType = fetchType:lower()
-        if fetchType == 'active' or fetchType == 'enabled' then
-            fetchType = 'active'
-        elseif fetchType == 'inactive' or fetchType == 'disabled' then
-            fetchType = 'inactive'
-        else
-            fetchType = 'all'
-        end
+        modsListfetchType = 'all'
     end
     assert(checkFileExists('modsList.txt', true), 'modsList.txt does not exist.') -- make sure modsList.txt exists
 
@@ -47,9 +64,9 @@ function file.getModsList(fetchType)
     file.mostRecentFileReadFrom = 'modsList.txt'
 
     local addModToList = false
-    local listOfMods = {}
+    local listOfMods = { }
     local modName = ''
-    local returnLineOfContent = {0, 0}
+    local returnLineOfContent = { 0, 0 }
     local startOfTableElement = 1
 
     while startOfTableElement < #modsListFile do
@@ -61,9 +78,9 @@ function file.getModsList(fetchType)
 
         modName = stringTrim(modsListFile:sub(startOfTableElement, tonumber(returnLineOfContent[1]) - 1))
         if stringEndsWith(modName, '1') then
-            addModToList = fetchType == 'all' or fetchType == 'active'
+            addModToList = modsListfetchType == 'all' or modsListfetchType == 'active'
         else
-            addModToList = fetchType == 'all' or fetchType == 'inactive'
+            addModToList = modsListfetchType == 'all' or modsListfetchType == 'inactive'
         end
 
         if addModToList then
@@ -84,6 +101,7 @@ end
 --- @param filePath string
 --- @param startFromCurrentModDirectory? boolean
 --- @return boolean
+--- @nodiscard
 function file.isFolder(filePath, startFromCurrentModDirectory)
     assert(type(filePath) == 'string', 'Expected string for filePath, got ' .. type(filePath) .. '.') -- use only strings for filePath
     if startFromCurrentModDirectory == nil then

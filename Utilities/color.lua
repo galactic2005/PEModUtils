@@ -5,6 +5,7 @@ local color = {
 
 --- @param decimal number
 --- @param stringStart number
+--- @nodiscard
 local function decimalToHex(decimal, stringStart)
     local stringHex = tostring(("%X"):format(tostring(decimal)))
     return stringHex:sub(#stringHex - stringStart, #stringHex)
@@ -18,9 +19,10 @@ end
 --- @param strumNoteID integer
 --- @param usePixelRGB? boolean
 --- @return table
+--- @nodiscard
 function color.getClientRGBFromStrum(strumNoteID, usePixelRGB)
     if version < '0.7.0' then
-        return {nil, nil, nil}
+        return { nil, nil, nil }
     end
     assert(strumNoteID > -1, 'strumNoteID is at a value of ' .. strumNoteID .. ', which is below 0.')
     assert(strumNoteID < 4, 'strumNoteID is at a value of ' .. strumNoteID .. ', which is above 3.')
@@ -28,10 +30,12 @@ function color.getClientRGBFromStrum(strumNoteID, usePixelRGB)
     local arrowRGB = (usePixelRGB and 'data.arrowRGBPixel') or 'data.arrowRGB'
     local tableOfRGBUnconverted = getPropertyFromClass('backend.ClientPrefs', arrowRGB .. '[' .. strumNoteID .. ']')
 
-    local r = decimalToHex(tableOfRGBUnconverted[1], 5)
-    local g = decimalToHex(tableOfRGBUnconverted[2], 5)
-    local b = decimalToHex(tableOfRGBUnconverted[3], 5)
-    return {r, g, b}
+    -- { r, g, b }
+    return {
+        decimalToHex(tableOfRGBUnconverted[1], 5),
+        decimalToHex(tableOfRGBUnconverted[2], 5),
+        decimalToHex(tableOfRGBUnconverted[3], 5)
+    }
 end
 
 --- A version of `getPixelColor` that automatically converts variables using the other functions listed
@@ -41,6 +45,7 @@ end
 --- @param x number
 --- @param y number
 --- @return string
+--- @nodiscard
 function color.getPixelColor(obj, x, y)
     return decimalToHex(getPixelColor(obj, tonumber(x), tonumber(y)), 7)
 end

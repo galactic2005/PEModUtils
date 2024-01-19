@@ -39,6 +39,7 @@ local psychonline = {
 --- @param player any
 --- @param stat string
 --- @return any
+--- @nodiscard
 function psychonline.getPlayerStat(player, stat)
     assert(type(stat) == 'string', 'Expected string for stat, got ' .. type(stat) .. '.') -- use only strings for stat
 
@@ -50,6 +51,7 @@ end
 --- Returns a player's current stats
 --- @param player any
 --- @return table
+--- @nodiscard
 function psychonline.getPlayerStatsTable(player)
     local playerType = tostring(player)
     assert(playerType == '1' or playerType == '2', 'playerType is ' .. playerType .. ', not \'1\' or \'2\'.') -- only player one or two
@@ -66,6 +68,7 @@ end
 
 --- Returns the current Psych Engine Online version.
 --- @return string
+--- @nodiscard
 function psychonline.getPsychEngineOnlineVersion()
     local classForMainMenuState = 'states.MainMenuState'
     if version < '0.7.0' then
@@ -78,18 +81,21 @@ end
 
 --- Returns `true` if Anarchy Mode is enabled; else false
 --- @return boolean
+--- @nodiscard
 function psychonline.isAnarchyMode()
     return getPropertyFromClass('online.GameClient', 'room.state.anarchyMode')
 end
 
 --- Returns `true` if the client is online; else false
 --- @return boolean
+--- @nodiscard
 function psychonline.isClientOnline()
     return getPropertyFromClass('online.GameClient', 'room') ~= nil
 end
 
 --- Returns `true` if the client is the owner; else false
 --- @return boolean
+--- @nodiscard
 function psychonline.isClientOwner()
     return getPropertyFromClass('online.GameClient', 'isOwner')
 end
@@ -98,6 +104,7 @@ end
 ---
 --- When offline, it'll return `opponentMode` from the class `states.PlayState`
 --- @return boolean
+--- @nodiscard
 function psychonline.isOpponent()
     if getPropertyFromClass('online.GameClient', 'room') ~= nil then
         if getPropertyFromClass('online.GameClient', 'room.state.swagSides') then
@@ -116,12 +123,14 @@ end
 
 --- Returns `true` if the game is private; else false
 --- @return boolean
+--- @nodiscard
 function psychonline.isPrivateRoom()
     return getPropertyFromClass('online.GameClient', 'room.state.isPrivate')
 end
 
 --- Returns `true` if Swap Sides is enabled; else false
 --- @return boolean
+--- @nodiscard
 function psychonline.isSwapSides()
     return getPropertyFromClass('online.GameClient', 'room.state.swagSides')
 end
