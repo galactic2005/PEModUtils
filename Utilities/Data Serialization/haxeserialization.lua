@@ -252,7 +252,7 @@ function handleTableUnserialization(cacheKey, dataType)
     end
 
     assert(false, 'Cannot unserialize table with dataType of ' .. dataType '.')
-    return {}
+    return { }
 end
 
 --- @param data any
@@ -452,7 +452,7 @@ end
 ---
 --- Refer to https://haxe.org/manual/std-serialization.html for more information on serialization.
 --- @param unserializedData any
---- @param forcedDataType? nil|string
+--- @param forcedDataType? string
 function haxeserialization.serializeData(unserializedData, forcedDataType)
     local dataType = ''
     if not forcedDataType or forcedDataType == '' then
@@ -470,7 +470,7 @@ end
 --- If `serializedData` is left as nil or blank, then it'll use `serializedData`.
 ---
 --- Refer to https://haxe.org/manual/std-serialization.html for more information on serialization.
---- @param serializedData? nil|string
+--- @param serializedData? string
 --- @return any
 --- @nodiscard
 function haxeserialization.unserializeData(serializedData)

@@ -47,8 +47,8 @@ function mod.loadSongFromAnotherMod(weekJsonPath, songTitle, difficultyName)
         difficultyList = jsonFileDK.difficulties
     end
 
-    local difficultiesAsTable = {}
-    local returnLineOfContent = {}
+    local difficultiesAsTable = { }
+    local returnLineOfContent = { }
     local startOfTableElement = 1
 
     -- use lowercase, everything is case senseti
