@@ -425,7 +425,7 @@ function apicompatible.returnCompatibleClassName(className)
 
         -- default
         {'default', '', function()
-            if apicompatibleutil.returnCompatibleNameDebugMessage then
+            if apicompatible.returnCompatibleNameDebugMessage then
                 debugPrint('Could not find ' .. className .. ' class for ' .. version .. '. Returned className.')
             end
         end}
@@ -456,7 +456,7 @@ function apicompatible.returnCompatibleVariableName(variableName, className)
                     variableNameToReturn = returnBasedOnVersion('globalAntialiasing', 'antialiasing')
                 end},
                 {'default', '', function()
-                    if apicompatibleutil.returnCompatibleNameDebugMessage then
+                    if apicompatible.returnCompatibleNameDebugMessage then
                         debugPrint('Could not find ' .. variableName .. ' variable for ' .. version .. ' in ' .. className .. '. Returned variableName.')
                     end
                 end}
@@ -469,7 +469,7 @@ function apicompatible.returnCompatibleVariableName(variableName, className)
                     variableNameToReturn = returnBasedOnVersion('lastSongPos', 'songPosition')
                 end},
                 {'default', '', function()
-                    if apicompatibleutil.returnCompatibleNameDebugMessage then
+                    if apicompatible.returnCompatibleNameDebugMessage then
                         debugPrint('Could not find ' .. variableName .. ' variable for ' .. version .. ' in ' .. className .. '. Returned variableName.')
                     end
                 end}
@@ -490,7 +490,7 @@ function apicompatible.returnCompatibleVariableName(variableName, className)
                     variableNameToReturn = returnBasedOnVersion('antialiasing', 'noteSplashData.antialiasing')
                 end},
                 {'default', '', function()
-                    if apicompatibleutil.returnCompatibleNameDebugMessage then
+                    if apicompatible.returnCompatibleNameDebugMessage then
                         debugPrint('Could not find ' .. variableName .. ' variable for ' .. version .. ' in ' .. className .. '. Returned variableName.')
                     end
                 end}
@@ -526,7 +526,7 @@ function apicompatible.returnCompatibleVariableName(variableName, className)
                     variableNameToReturn = returnBasedOnVersion('timeBarBG', 'timeBar.bg')
                 end},
                 {'default', '', function()
-                    if apicompatibleutil.returnCompatibleNameDebugMessage then
+                    if apicompatible.returnCompatibleNameDebugMessage then
                         debugPrint('Could not find ' .. variableName .. ' variable for ' .. version .. ' in ' .. className .. '. Returned variableName.')
                     end
                 end}
@@ -544,7 +544,7 @@ function apicompatible.returnCompatibleVariableName(variableName, className)
                     variableNameToReturn = returnBasedOnVersion('updateCamera', 'moveCamera')
                 end},
                 {'default', '', function()
-                    if apicompatibleutil.returnCompatibleNameDebugMessage then
+                    if apicompatible.returnCompatibleNameDebugMessage then
                         debugPrint('Could not find ' .. variableName .. ' variable for ' .. version .. ' in ' .. className .. '. Returned variableName.')
                     end
                 end}
@@ -553,7 +553,7 @@ function apicompatible.returnCompatibleVariableName(variableName, className)
 
         -- default
         {'default', '', function()
-            if apicompatibleutil.returnCompatibleNameDebugMessage then
+            if apicompatible.returnCompatibleNameDebugMessage then
                 debugPrint('Could not find ' .. className .. ' class for ' .. version .. '. Returned variableName.')
             end
         end}
