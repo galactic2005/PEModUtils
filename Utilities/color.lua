@@ -5,6 +5,7 @@ local color = {
 
 --- @param decimal number
 --- @param stringStart number
+--- @return string
 --- @nodiscard
 local function decimalToHex(decimal, stringStart)
     local stringHex = tostring(("%X"):format(tostring(decimal)))
@@ -13,9 +14,9 @@ end
 
 --- Returns a client's RGB preference from a specified strum line as a string hex value
 ---
---- `strumNoteID` should be any integer between 0-3.
----
 --- Any version of Psych Engine below 0.7.0 will return a table consisting of nil instead.
+---
+--- `strumNoteID` should be any integer between 0 to 3 in 4 key/mania. See documentation for details on multikey support.
 --- @param strumNoteID integer
 --- @param usePixelRGB? boolean
 --- @return table
@@ -24,8 +25,17 @@ function color.getClientRGBFromStrum(strumNoteID, usePixelRGB)
     if version < '0.7.0' then
         return { nil, nil, nil }
     end
+
+    -- multikey support
+    local strumLength = nil
+    if getProperty('strumLineNotes.length') ~= nil then
+        strumLength = (getProperty('strumLineNotes.length') - 1) * 0.5
+    else
+        strumLength = 3
+    end
+
     assert(strumNoteID > -1, 'strumNoteID is at a value of ' .. strumNoteID .. ', which is below 0.')
-    assert(strumNoteID < 4, 'strumNoteID is at a value of ' .. strumNoteID .. ', which is above 3.')
+    assert(strumNoteID < strumLength, 'strumNoteID is at a value of ' .. strumNoteID .. ', which is above' .. tostring(strumLength - 1) .. '.')
 
     local arrowRGB = (usePixelRGB and 'data.arrowRGBPixel') or 'data.arrowRGB'
     local tableOfRGBUnconverted = getPropertyFromClass('backend.ClientPrefs', arrowRGB .. '[' .. strumNoteID .. ']')
