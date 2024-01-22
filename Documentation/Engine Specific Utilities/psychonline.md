@@ -10,7 +10,6 @@
 
 * `tablePlayerStatStrings = { 'score', 'misses', 'sicks', 'goods', 'bads', 'shits', 'name', 'hasSong', 'hasLoaded', 'hasEnded', 'ping' }` - table of player stats in order as defined in `online/scheme/Player.hx`
 
-
 ## Functions
 
 ### getPlayerStat(player: dynamic, stat: string)
