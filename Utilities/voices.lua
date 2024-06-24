@@ -8,12 +8,13 @@ local voices = {
 ---The `characterName` variable accepts player or opponent sides, girlfriend will result in the function doing nothing.
 ---
 ---If the current version of Psych Engine is 0.7.2 or lower, the function will do nothing.
----@param characterName string
-function voices.reloadCharacterVoice(characterName)
+---@param character string
+function voices.reloadCharacterVoice(character)
     if version < '0.7.3' then return end
-    assert(type(characterName) == 'string', 'Expected string for characterName, got ' .. type(characterName) .. '.') -- use only strings for characterName
+    local characterType = type(character)
+    assert(characterType == 'number' or characterType == 'string', 'Expected string for characterName, got ' .. characterType .. '.') -- use only strings for characterName
 
-	local newCharacterName = stringTrim(characterName:lower())
+	local newCharacterName = stringTrim(tostring(character):lower())
 	local isGirlfriend = (newCharacterName == '2' or newCharacterName == 'gf' or newCharacterName == 'girlfriend')
 	if isGirlfriend then return end
 
