@@ -5,7 +5,7 @@ local voices = {
 
 ---Reloads the character voice to use their postfix, allowing dynamic reloading of the character voices
 ---
----The player or opponent sides are acceptable, girlfriend will result in the function doing nothing.
+---The `characterName` variable accepts player or opponent sides, girlfriend will result in the function doing nothing.
 ---
 ---If the current version of Psych Engine is 0.7.2 or lower, the function will do nothing.
 ---@param characterName string

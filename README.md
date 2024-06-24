@@ -34,6 +34,8 @@ local file = require(currentModDirectory .. '/file')
 debugPrint(file._VERSION)
 ```
 
+> See [require.lua](require.lua) for all requires.
+
 Refer to the `Documentation/` folder or the [PEModUtils Wiki](https://github.com/galactic2005/PEModUtils/wiki) for information on modules and how to use them.
 
 ## Help
