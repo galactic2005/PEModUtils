@@ -9,15 +9,23 @@
 
 This allows you to focus on what's needed in your project with not having to deal with manually creating backend code or debugging code.
 
-## Setup/Usage
-
-### Cloning
+## Cloning
 
 Use [git](https://git-scm.com/) to clone.
 
 ```git
 git clone https://github.com/galactic2005/PEModUtils.git
 ```
+
+If you'd like to use the experimental branch, use the following command instead:
+
+```git
+git clone -b experimental https://github.com/galactic2005/PEModUtils.git
+```
+
+It's highly recommended to use [Releases](https://github.com/galactic2005/PEModUtils/releases) or the master branch for your modding needs. If you plan on contributing, it's required to use the experimental branch.
+
+## Setup/Usage
 
 ### Lua Stage Recreations
 
@@ -40,9 +48,9 @@ Refer to the `Documentation/` folder or the [PEModUtils Wiki](https://github.com
 
 ## Help
 
-If you need help with how to use something in this repository or if there's a problem with code, please open an issue.
+If you need help with setting up or if there's a problem with code, please open an issue.
 
-Altnatively, you can contact me through Discord at `galactic_2005`. I'll be sure to provide assistance to the best of my ability.
+Alternatively, you can contact me through Discord at `galactic_2005`. I'll provide assistance to the best of my ability.
 
 ## Contributing
 

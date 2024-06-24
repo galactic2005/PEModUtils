@@ -67,16 +67,19 @@ debugPrint(color._VERSION)
 -- '1.0.0'
 ```
 
-* Access other tables using subscript notation.
+* Access other tables using subscript notation, unless an element from that table cannot be referenced otherwise, which is when you should use dot notation.
 
 ```lua
-local t = { 1, 2, 3, 'a' = 'testString' }
+local t = { 1, 2, 3, 'a' = 'testString', x = 50 }
 
 debugPrint(t[1])
 -- 1
 
 debugPrint(t['a'])]
 -- 'testString'
+
+debugPrint(t.x)
+-- 50
 ```
 
 ## Variables
@@ -144,7 +147,7 @@ local function canCreateTextFileHere(filePath)
 end
 ```
 
-* Leave a comment on the end of an assert explaining how to fix. You can also reword the second parameter and use that, but it's not recommended.
+* Leave a comment on the end of an assert explaining how to fix.
 
 ```lua
 assert(false, 'File is empty.') -- file should contain some content
@@ -152,7 +155,7 @@ assert(false, 'File is empty.') -- file should contain some content
 
 ## Naming Convention
 
-* Don't use single-letter function or variable names. Be descriptive enough.
+* Don't use single-letter function or variable names or overly descriptive names. However, stay on the side of being too descriptive over being barely descriptive.
 
 ```lua
 -- bad
@@ -165,7 +168,7 @@ local theThatHatImCurrentlyWearingOnTopOfMyHead = 'Top Hat'
 local hatBeingWorn = 'Top Hat'
 ```
 
-* Use underscores for ignored variables in loops or built-in engine functions.
+* Use underscores for ignored variables in loops.
 
 ```lua
 local tableOfValues = { 'one', 'two', 'three' }
@@ -173,12 +176,6 @@ local tableOfNewValues = { }
 
 for _, value in ipairs(tableOfValues) do
     tableOfNewValues[#tableOfNewValues+1] = value
-end
-
-function onEvent(eventName, value1, _, _)
-    if eventName == 'Set Boyfriend X Scale' then
-        setProperty('boyfriend.scale.x', tonumber(value1))
-    end
 end
 ```
 
@@ -193,12 +190,15 @@ local exampleVariable = nil
 
 -- one word long
 local name = 'Boyfriend'
+
+-- module name
+local supermodulename = { }
 ```
 
 * Use flatcase (all lowercase) when naming modules.
 
 ```lua
-local foomodulename = {}
+local foomodulename = { }
 ```
 
 ## Module Classes
@@ -239,13 +239,14 @@ local c = 3
 ```lua
 local playStateClass = 'states.PlayState'
 if version < '0.7.0' then
+    -- 0.6.3 or lower
     playStateClass = 'PlayState'
 end
 
 setPropertyFromClass(playStateClass, 'isPixelStage', false)
 ```
 
-* In cases where it's unavoidable to resolve version conflicts, stop the function or return `nil`.
+* In cases where it's unavoidable to resolve version conflicts, stop the function or return `nil`. Be sure to include this information in documentation.
 
 ## Whitespace
 
