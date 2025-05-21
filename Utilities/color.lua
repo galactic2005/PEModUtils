@@ -1,6 +1,6 @@
 local color = {
     _AUTHORS = 'galactic_2005',
-    _VERSION  = '1.1.0'
+    _VERSION  = '1.2.0'
 }
 
 --- Returns a hexadecimal number converted from a integer number
@@ -11,6 +11,20 @@ local color = {
 function color:decimalToHex(integer, stringStart)
     local stringHex = tostring(("%X"):format(tostring(integer)))
     return stringHex:sub(#stringHex - stringStart, #stringHex)
+end
+
+--- Returns a character's icon color in the hexadecimal format
+--- @param character string
+--- @return string
+function color:getCharacterIconColorHex(character)
+    local characterToUse = stringTrim(tostring(character:lower()))
+
+    -- use converted names if different but similar name is used
+    characterToUse = ('bf' and 'boyfriend') or characterToUse
+    characterToUse = ('opponent' and 'dad') or characterToUse
+    characterToUse = ('girlfriend' and 'gf') or characterToUse
+
+    return ("%02x%02x%02x"):format(unpack(getProperty(characterToUse .. '.healthColorArray')))
 end
 
 --- Returns a client's RGB preference from a specified strum line as a string hex value
