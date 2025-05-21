@@ -6,7 +6,7 @@ local enginecheck = {
 --- Returns the engine the player is currently using alongside the version; see documentation for a list of supported engines
 --- @return string
 --- @nodiscard
-function enginecheck.getEngine()
+function enginecheck:getEngine()
     local classForMainMenuState = 'states.MainMenuState'
     if version < '0.7.0' then
         -- 0.6.3 or lower

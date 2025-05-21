@@ -1,14 +1,15 @@
 local color = {
     _AUTHORS = 'galactic_2005',
-    _VERSION  = '1.0.0'
+    _VERSION  = '1.1.0'
 }
 
---- @param decimal number
+--- Returns a hexadecimal number converted from a integer number
+--- @param integer number
 --- @param stringStart number
 --- @return string
 --- @nodiscard
-local function decimalToHex(decimal, stringStart)
-    local stringHex = tostring(("%X"):format(tostring(decimal)))
+function color:decimalToHex(integer, stringStart)
+    local stringHex = tostring(("%X"):format(tostring(integer)))
     return stringHex:sub(#stringHex - stringStart, #stringHex)
 end
 
@@ -21,7 +22,7 @@ end
 --- @param usePixelRGB? boolean
 --- @return table
 --- @nodiscard
-function color.getClientRGBFromStrum(strumNoteID, usePixelRGB)
+function color:getClientRGBFromStrum(strumNoteID, usePixelRGB)
     if version < '0.7.0' then
         return { nil, nil, nil }
     end
@@ -42,22 +43,22 @@ function color.getClientRGBFromStrum(strumNoteID, usePixelRGB)
 
     -- { r, g, b }
     return {
-        decimalToHex(tableOfRGBUnconverted[1], 5),
-        decimalToHex(tableOfRGBUnconverted[2], 5),
-        decimalToHex(tableOfRGBUnconverted[3], 5)
+        self.decimalToHex(tableOfRGBUnconverted[1], 5),
+        self.decimalToHex(tableOfRGBUnconverted[2], 5),
+        self.decimalToHex(tableOfRGBUnconverted[3], 5)
     }
 end
 
---- A version of `getPixelColor` that automatically converts variables using the other functions listed
+--- A version of `getPixelColor` that automatically converts variables using the `decimalToHex` function
 ---
---- Refer to documenation of  `getPixelColor` for more information on this function
---- @param obj string
+--- Refer to documentation of  `getPixelColor` for more information on this function
+--- @param object string
 --- @param x number
 --- @param y number
 --- @return string
 --- @nodiscard
-function color.getPixelColor(obj, x, y)
-    return decimalToHex(getPixelColor(obj, tonumber(x), tonumber(y)), 7)
+function color:getPixelColor(object, x, y)
+    return self.decimalToHex(getPixelColor(object, tonumber(x), tonumber(y)), 7)
 end
 
 return color

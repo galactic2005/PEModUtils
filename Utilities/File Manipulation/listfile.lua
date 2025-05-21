@@ -19,7 +19,7 @@ local listfile = {
 --- @param startFromCurrentModDirectory? boolean
 --- @return table
 --- @nodiscard
-function listfile.read(filePath, startFromCurrentModDirectory)
+function listfile:read(filePath, startFromCurrentModDirectory)
     assert(type(filePath) == 'string', 'Expected string for path, got ' .. type(filePath) .. '.') -- use only strings for filePath
     if startFromCurrentModDirectory == nil then
         startFromCurrentModDirectory = true
@@ -30,8 +30,8 @@ function listfile.read(filePath, startFromCurrentModDirectory)
         filePath = filePath .. '.txt'
     end
     assert(checkFileExists(filePath, startFromCurrentModDirectory), 'File at ' .. filePath .. ' does not exist.') -- file does not exist
-    listfile.mostRecentFileUsed = filePath
-    listfile.mostRecentFileReadFrom = filePath
+    self.mostRecentFileUsed = filePath
+    self.mostRecentFileReadFrom = filePath
 
     -- get text from file
     local file = getTextFromFile(filePath, not startFromCurrentModDirectory)
@@ -66,13 +66,13 @@ end
 --- @param linePosition? integer
 --- @return nil|string
 --- @nodiscard
-function listfile.readLine(filePath, startFromCurrentModDirectory, linePosition)
+function listfile:readLine(filePath, startFromCurrentModDirectory, linePosition)
     assert(type(filePath) == 'string', 'Expected string for path, got ' .. type(filePath) .. '.') -- use only strings for filePath
     if startFromCurrentModDirectory == nil then
         startFromCurrentModDirectory = true
     end
 
-    local listOfContent = listfile.read(filePath, startFromCurrentModDirectory)
+    local listOfContent = self.read(filePath, startFromCurrentModDirectory)
     if (not listOfContent) or #listOfContent < 1 then
         return nil
     end
@@ -99,7 +99,7 @@ end
 --- @param indexPosition? number
 --- @return string|table
 --- @nodiscard
-function listfile.readTable(tableOfListFiles, indexPosition)
+function listfile:readTable(tableOfListFiles, indexPosition)
     assert(type(tableOfListFiles) == 'table', 'Expected table for tableOfListFiles, got ' .. type(tableOfListFiles) .. '.') -- use only tables for tableOfListFiles
     if indexPosition ~= nil then
         indexPosition = tonumber(indexPosition)
@@ -109,12 +109,12 @@ function listfile.readTable(tableOfListFiles, indexPosition)
             indexPosition = #tableOfListFiles
         end
 
-        return listfile.read(tableOfListFiles[indexPosition][1], tableOfListFiles[indexPosition][2])
+        return self.read(tableOfListFiles[indexPosition][1], tableOfListFiles[indexPosition][2])
     end
 
     local tableToReturn = {}
     for i = 1, #tableOfListFiles do
-        tableToReturn[#tableToReturn+1] = listfile.read(tableOfListFiles[i][1], tableOfListFiles[i][2])
+        tableToReturn[#tableToReturn+1] = self.read(tableOfListFiles[i][1], tableOfListFiles[i][2])
     end
     return tableToReturn
 end
@@ -128,7 +128,7 @@ end
 --- @param filePath string
 --- @param tableToInsert table
 --- @param startFromCurrentModDirectory? boolean
-function listfile.write(filePath, tableToInsert, startFromCurrentModDirectory)
+function listfile:write(filePath, tableToInsert, startFromCurrentModDirectory)
     -- type asserts
     assert(type(filePath) == 'string', 'Expected string for path, got ' .. type(filePath) .. '.') -- use only strings for filePath
     assert(type(tableToInsert) == 'table', 'Expected table for tableToInsert, got ' .. type(tableToInsert) .. '.')-- use only tables for tableToInsert
@@ -150,8 +150,8 @@ function listfile.write(filePath, tableToInsert, startFromCurrentModDirectory)
     end
 
     local fileContent = ''
-    listfile.mostRecentFileUsed = filePath
-    listfile.mostRecentFileWrittenTo = filePath
+    self.mostRecentFileUsed = filePath
+    self.mostRecentFileWrittenTo = filePath
 
     local tableElement = nil
     for i = 1, #tableToInsert do

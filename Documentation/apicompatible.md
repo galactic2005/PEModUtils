@@ -2,7 +2,7 @@
 
 ## Usage
 
-*apicompatible* is a module used to make compatibility easier between different versions of Pysch Engine.
+*apicompatible* is a module used to make compatibility easier between different versions of Psych Engine.
 
 This module is used for both compatibility with older versions of Psych Engine, alongside newer versions when they come out and this module is updated accordingly.
 
@@ -27,20 +27,20 @@ Returns the class name that is compatible with reflection functions in the versi
 Example:
 
 ```lua
-debugPrint(apicompatible.returnCompatableClassName('PlayState'))
+debugPrint(apicompatible.returnCompatibleClassName('PlayState'))
 --[[
     returns 'PlayState' if 0.6.3 or lower
     returns 'states.PlayState' if 0.7.0 or higher
 ]]
 ```
 
-Set `returnClassNameDebugMessage` to `true` if you wish to recieve debug messages when no class name is found.
+Set `returnClassNameDebugMessage` to `true` if you wish to receive debug messages when no class name is found.
 
 ### returnCompatibleVariableName(variableName: string, className?: string = 'PlayState')
 
 Returns the variable name that is compatible with reflection functions in the version being played.
 
-Set `returnClassNameDebugMessage` to `true` if you wish to recieve debug messages when no class name or variable name is found.
+Set `returnClassNameDebugMessage` to `true` if you wish to receive debug messages when no class name or variable name is found.
 
 ### returnClientPrefName(clientPrefName: string)
 
@@ -52,10 +52,10 @@ In version 0.7.0 and above, you are required to prefix the client preference nam
 
 A version of `getPropertyFromClass` that automatically converts variables using the other functions listed.
 
-Refer to the documenation for `getPropertyFromClass` for more information on this function.
+Refer to the documentation for `getPropertyFromClass` for more information on this function.
 
 ### setPropertyFromClass(classVar: string, variable: string, value: any, ?allowMaps: boolean = false)
 
 A version of `setPropertyFromClass` that automatically converts variables using the other functions listed.
 
-Refer to the documenation for `setPropertyFromClass` for more information on this function.
+Refer to the documentation for `setPropertyFromClass` for more information on this function.

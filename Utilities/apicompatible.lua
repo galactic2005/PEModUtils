@@ -67,14 +67,14 @@ end
 --- @param allowMaps? boolean
 --- @return any property
 --- @nodiscard
-function apicompatible.getPropertyFromClass(classVar, variable, allowMaps)
+function apicompatible:getPropertyFromClass(classVar, variable, allowMaps)
     assert(type(classVar) == 'string', 'Expected string for classVar, got ' .. type(classVar) .. '.') -- use only strings for classVar
     assert(type(variable) == 'string', 'Expected string for variable, got ' .. type(variable) .. '.') -- use only strings for variable
     if allowMaps == nil then
         allowMaps = false
     end
 
-    return getPropertyFromClass(apicompatible.returnCompatibleClassName(classVar), variable, allowMaps)
+    return getPropertyFromClass(self.returnCompatibleClassName(classVar), variable, allowMaps)
 end
 
 --- A version of `setPropertyFromClass` that automatically converts variables using the other functions listed
@@ -84,21 +84,21 @@ end
 --- @param variable string
 --- @param value any
 --- @param allowMaps? boolean
-function apicompatible.setPropertyFromClass(classVar, variable, value, allowMaps)
+function apicompatible:setPropertyFromClass(classVar, variable, value, allowMaps)
     assert(type(classVar) == 'string', 'Expected string for classVar, got ' .. type(classVar) .. '.') -- use only strings for classVar
     assert(type(variable) == 'string', 'Expected string for variable, got ' .. type(variable) .. '.') -- use only strings for variable
     if allowMaps == nil then
         allowMaps = false
     end
 
-    local classToUse = apicompatible.returnCompatibleClassName(classVar)
-    setPropertyFromClass(classToUse, apicompatible.returnCompatibleVariableName(classToUse, variable), value, allowMaps)
+    local classToUse = self.returnCompatibleClassName(classVar)
+    setPropertyFromClass(classToUse, self.returnCompatibleVariableName(classToUse, variable), value, allowMaps)
 end
 
 --- Enables the HUE/Brt/Sat system that was used before 0.7.0
 ---
 --- Note that this function enables the system for all notes and strums.
-function apicompatible.enableHueBrtSatNoteColorSystem()
+function apicompatible:enableHueBrtSatNoteColorSystem()
     if version < '0.7.0' then
         -- don't run if we're already using the system
         return
@@ -118,7 +118,7 @@ end
 --- @param clientPrefName string
 --- @return string
 --- @nodiscard
-function apicompatible.returnClientPrefName(clientPrefName)
+function apicompatible:returnClientPrefName(clientPrefName)
     assert(type(clientPrefName) == 'string', 'Expected string for clientPrefName, got ' .. type(clientPrefName) .. '.') -- use only strings for clientPrefName
     return returnBasedOnVersion(clientPrefName, 'data.' .. clientPrefName)
 end
@@ -127,7 +127,7 @@ end
 --- @param className string
 --- @return string compatibleClassName
 --- @nodiscard
-function apicompatible.returnCompatibleClassName(className)
+function apicompatible:returnCompatibleClassName(className)
     assert(type(className) == 'string', 'Expected string for className, got ' .. type(className) .. '.') -- use only strings for className
 
     local classNameToReturn = className
@@ -440,7 +440,7 @@ end
 --- @param className? string
 --- @return string compatibleVariableName
 --- @nodiscard
-function apicompatible.returnCompatibleVariableName(variableName, className)
+function apicompatible:returnCompatibleVariableName(variableName, className)
     assert(type(variableName) == 'string', 'Expected string for variableName, got ' .. type(variableName) .. '.') -- use only strings for variableName
     if className == nil then
         className = 'PlayState'

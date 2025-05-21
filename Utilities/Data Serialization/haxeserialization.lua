@@ -453,7 +453,7 @@ end
 --- Refer to https://haxe.org/manual/std-serialization.html for more information on serialization.
 --- @param unserializedData any
 --- @param forcedDataType? string
-function haxeserialization.serializeData(unserializedData, forcedDataType)
+function haxeserialization:serializeData(unserializedData, forcedDataType)
     local dataType = ''
     if not forcedDataType or forcedDataType == '' then
         dataType = type(unserializedData)
@@ -473,10 +473,10 @@ end
 --- @param serializedData? string
 --- @return any
 --- @nodiscard
-function haxeserialization.unserializeData(serializedData)
+function haxeserialization:unserializeData(serializedData)
     isUsingExternalData = serializedData == nil or serializedData == ''
     if isUsingExternalData then
-        serializedData = haxeserialization.serializedData
+        serializedData = self.serializedData
     end
     assert(type(serializedData) == 'string', 'Data is expected to be string, got ' .. type(serializedData) .. '.')
 
@@ -491,11 +491,11 @@ end
 --- @param serializedData? string|nil
 --- @return table
 --- @nodiscard
-function haxeserialization.unserializeDataWhole(serializedData)
+function haxeserialization:unserializeDataWhole(serializedData)
     isUsingExternalData = serializedData == nil or serializedData == ''
 
     if isUsingExternalData then
-        serializedData = haxeserialization.serializedData
+        serializedData = self.serializedData
     end
     assert(type(serializedData) == 'string', 'Data is expected to be string, got ' .. type(serializedData) .. '.')
 

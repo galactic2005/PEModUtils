@@ -6,6 +6,12 @@
 
 ## Functions
 
+### decimalToHex(integer: integer, stringStart: string)
+
+Unfinished Documentation.
+
+Returns a hexadecimal number converted from a integer number.
+
 ### getClientRGBFromStrum(strumNoteID: integer, usePixelRGB?: boolean = false)
 
 Returns a client's RGB preference from a specified strum line as a string hex value. Any version of Psych Engine below 0.7.0 will return a table consisting of nil instead.
@@ -18,8 +24,8 @@ Returns a client's RGB preference from a specified strum line as a string hex va
 
 If `usePixelRGB` is true, it'll pull from the client's pixel RGB preference.
 
-### getPixelColor(obj: string, x: number, y: number)
+### getPixelColor(object: string, x: number, y: number)
 
-A version of `getPixelColor` that automatically converts variables using the other functions listed.
+A version of `getPixelColor` that automatically converts variables using the `decimalToHex` function.
 
-Refer to documenation of  `getPixelColor` for more information on this function.
+Refer to documentation of  `getPixelColor` for more information on this function.

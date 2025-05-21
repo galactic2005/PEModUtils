@@ -56,3 +56,30 @@ debugPrint(getModsList(false))
 ### isFolder(fileString: string, startFromCurrentModDirectory?: boolean = true)
 
 Checks if `fileString` is a folder or not by searching for a period.
+
+### removeDepreciatesFromScript(filePath: string, startFromCurrentModDirectory?: boolean = true)
+
+Converts lua scripts to replace depreciate functions.
+
+As this script only renames functions, it's important to remember to touch up your script for potential errors.
+
+Example:
+
+```lua
+---exampleScriptOne
+
+local currentScore = getScore()
+```
+
+```lua
+---exampleScriptTwo
+color.removeDepreciatesFromScript('exampleScriptOne')
+```
+
+Example (after running *exampleScriptTwo*):
+
+```lua
+---exampleScriptOne
+
+local currentScore = score
+```

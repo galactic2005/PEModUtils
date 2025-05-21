@@ -16,7 +16,7 @@ local mod = {
 --- @param weekJsonPath string
 --- @param songTitle string
 --- @param difficultyName string
-function mod.loadSongFromAnotherMod(weekJsonPath, songTitle, difficultyName)
+function mod:loadSongFromAnotherMod(weekJsonPath, songTitle, difficultyName)
     assert(type(weekJsonPath) == 'string', 'Expected string for weekJsonPath, got ' .. type(weekJsonPath) .. '.') -- use only strings for weekJsonPath
     assert(type(songTitle) == 'string', 'Expected string for songTitle, got ' .. type(songTitle) .. '.') -- use only strings for songTitle
     assert(type(difficultyName) == 'string', 'Expected string for difficultyName, got ' .. type(difficultyName) .. '.') -- use only strings for difficultyName

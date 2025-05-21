@@ -9,13 +9,8 @@ local extramath = {
 --- @param maximumClamp number
 --- @return number
 --- @nodiscard
-function extramath.clamp(number, minimumClamp, maximumClamp)
-    if number < minimumClamp then
-        return minimumClamp
-    elseif number > maximumClamp then
-        return maximumClamp
-    end
-    return number
+function extramath:clamp(number, minimumClamp, maximumClamp)
+    return ((number < minimumClamp and minimumClamp) or (number > maximumClamp and maximumClamp)) or number
 end
 
 --- Returns a number with the sign of `numberToCopy`
@@ -23,18 +18,15 @@ end
 --- @param numberToCopy any
 --- @return number
 --- @nodiscard
-function extramath.copySign(number, numberToCopy)
-    if numberToCopy < 0 then
-        return -math.abs(number)
-    end
-    return math.abs(number)
+function extramath:copySign(number, numberToCopy)
+    return (numberToCopy < 0 and -math.abs(number)) or math.abs(number)
 end
 
 --- Returns the degree converted into radians
 --- @param degree number
 --- @return number
 --- @nodiscard
-function extramath.degreeToRadian(degree)
+function extramath:degreeToRadian(degree)
     return degree * math.pi / 180
 end
 
@@ -44,7 +36,7 @@ end
 --- @param interpolationValue number
 --- @return number
 --- @nodiscard
-function extramath.lerp(startingValue, endingValue, interpolationValue)
+function extramath:lerp(startingValue, endingValue, interpolationValue)
     return startingValue + (endingValue - startingValue) * interpolationValue
 end
 
@@ -52,7 +44,7 @@ end
 --- @param dataSet table
 --- @return number
 --- @nodiscard
-function extramath.mean(dataSet)
+function extramath:mean(dataSet)
     assert(type(dataSet) == 'table','Expected table for dataSet, got ' .. type(dataSet) .. '.') -- use only tables for dataSet
     local dataAmount = 0
     local sum = 0
@@ -75,7 +67,7 @@ end
 --- @param number number
 --- @return number
 --- @nodiscard
-function extramath.negativeAbs(number)
+function extramath:negativeAbs(number)
     return -math.abs(number)
 end
 
@@ -83,7 +75,7 @@ end
 --- @param radian number
 --- @return number
 --- @nodiscard
-function extramath.radianToDegree(radian)
+function extramath:radianToDegree(radian)
     return radian * 180 / math.pi
 end
 
@@ -91,7 +83,7 @@ end
 --- @param numberToRound number
 --- @return number
 --- @nodiscard
-function extramath.round(numberToRound)
+function extramath:round(numberToRound)
     local _, f = math.modf(numberToRound)
     return ((f < 0.5) and math.floor(numberToRound)) or math.ceil(numberToRound)
 end
@@ -100,13 +92,8 @@ end
 --- @param number number
 --- @return integer
 --- @nodiscard
-function extramath.sign(number)
-    if number < 0 then
-        return -1
-    elseif number > 0 then
-        return 1
-    end
-    return 0
+function extramath:sign(number)
+    return ((number < 0 and -1) or (number > 0 and 1)) or 0
 end
 
 return extramath

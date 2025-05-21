@@ -1,6 +1,6 @@
 local file = {
     _AUTHORS = 'galactic_2005',
-    _VERSION = '5.1.0',
+    _VERSION = '5.1.1',
 
     --- The most recent file used regardless of context
     mostRecentFileUsed = '',
@@ -28,7 +28,7 @@ local file = {
 --- @param modsListfetchType? any
 --- @return table
 --- @nodiscard
-function file.getModsList(modsListfetchType)
+function file:getModsList(modsListfetchType)
     local fetchType = type(modsListfetchType)
 
     if fetchType == 'boolean' then
@@ -60,8 +60,8 @@ function file.getModsList(modsListfetchType)
     assert(checkFileExists('modsList.txt', true), 'modsList.txt does not exist.') -- make sure modsList.txt exists
 
     local modsListFile = getTextFromFile('../modsList.txt', false)
-    file.mostRecentFileUsed = 'modsList.txt'
-    file.mostRecentFileReadFrom = 'modsList.txt'
+    self.mostRecentFileUsed = 'modsList.txt'
+    self.mostRecentFileReadFrom = 'modsList.txt'
 
     local addModToList = false
     local listOfMods = { }
@@ -102,7 +102,7 @@ end
 --- @param startFromCurrentModDirectory? boolean
 --- @return boolean
 --- @nodiscard
-function file.isFolder(filePath, startFromCurrentModDirectory)
+function file:isFolder(filePath, startFromCurrentModDirectory)
     assert(type(filePath) == 'string', 'Expected string for filePath, got ' .. type(filePath) .. '.') -- use only strings for filePath
     if startFromCurrentModDirectory == nil then
         startFromCurrentModDirectory = true
@@ -114,14 +114,14 @@ function file.isFolder(filePath, startFromCurrentModDirectory)
     return not filePath:find('%.')
 end
 
---- Converts lua scripts to remove their depreciate counterparts
+--- Converts lua scripts to replace depreciate functions
 ---
 --- As this currently only renames functions, remember to manually touch-up your script.
 ---
 --- If `startFromCurrentModDirectory` is not defined, it'll be `true`.
 --- @param filePath string
 --- @param startFromCurrentModDirectory? boolean
-function file.removeDepreciatesFromScript(filePath, startFromCurrentModDirectory)
+function file:removeDepreciatesFromScript(filePath, startFromCurrentModDirectory)
     assert(type(filePath) == 'string', 'Expected string for filePath, got ' .. type(filePath) .. '.') -- use only strings for filePath
     if startFromCurrentModDirectory == nil then
         startFromCurrentModDirectory = true
@@ -136,14 +136,14 @@ function file.removeDepreciatesFromScript(filePath, startFromCurrentModDirectory
         filePath = filePath .. '.lua'
     end
     assert(checkFileExists(filePath, false), 'File at ' .. filePath .. ' does not exist.') -- make sure the file you've selected exists
-    file.mostRecentFileUsed = filePath
-    file.mostRecentFileReadFrom = filePath
-    file.mostRecentFileWrittenTo = filePath
+    self.mostRecentFileUsed = filePath
+    self.mostRecentFileReadFrom = filePath
+    self.mostRecentFileWrittenTo = filePath
 
     -- get text from file
     local luaFile = getTextFromFile(filePath, false)
 
-    -- lots of gsub
+    -- depreciate convert
     local result = luaFile:gsub('luaSpriteMakeGraphic', 'makeGraphic')
     result = result:gsub('luaSpriteAddAnimationByPrefix', 'addAnimationByPrefix')
     result = result:gsub('luaSpriteAddAnimationByIndices', 'addAnimationByIndices')
@@ -158,6 +158,11 @@ function file.removeDepreciatesFromScript(filePath, startFromCurrentModDirectory
     result = result:gsub('getPropertyLuaSprite', 'getProperty')
     result = result:gsub('musicFadeIn', 'soundFadeIn')
     result = result:gsub('musicFadeOut', 'soundFadeOut')
+
+    -- removed convert
+    result = result:gsub('getScore()', 'score')
+    result = result:gsub('getMisses()', 'misses')
+    result = result:gsub('getHits()', 'hits')
 
     -- save file
     saveFile(filePath, result, false)
